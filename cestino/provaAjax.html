@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+                    <input value='' id="firstname" />
+                    <input value='' id="lastname"/>
+                    <input value='' id="email" />
+                    <input id="pass" value='' />
+                    <input id="confirm" value=''/>
+                    <input type="submit" value="Submit" onclick="ajax_post()"/>
+
+
+
+<!-- mio div -->
+<div id="infoq"></div>
+<style>#infoq{
+    background-color: rgb(255,232,232);
+    border: 1px solid red;
+    color: red;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px 25px;
+    max-width: 250px;
+}</style>
+
+
+
+<script type="text/javascript">
+    var res = document.getElementById("infoq");
+    function ajax_post() {
+        var xmlHttp;
+        if (window.XMLHttpRequest){
+            xmlHttp = new XMLHttpRequest();
+        }else {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
+        }
+
+        var a = document.getElementById("firstname").value;
+        var infoUtente = "firstname="+a;
+
+        xmlHttp.onreadystatechange = function () {
+            if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
+                var message = xmlHttp.responseText;
+                res.innerHTML = message;
+            }
+        }
+        xmlHttp.open("POST", "servidor.php", true);
+        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+        xmlHttp.send(infoUtente);
+    }
+</script>
+
+
+
+</body>
+</html>

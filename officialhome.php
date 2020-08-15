@@ -47,11 +47,11 @@ if(!isset($_SESSION['myusersaw']))
 
 
                 <li>
-                    <form class="navbar-form navbar-left" role="search" action="search.html">
+                    <form class="navbar-form navbar-left" role="search" action="search.php" method="GET">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" name="search" placeholder="Search">
                         </div>
-                        <button type="submit" class="btn btn-info glyphicon glyphicon-search" onclick="location.href = 'search.html';"></button>
+                        <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
                     </form>
                 </li>
 

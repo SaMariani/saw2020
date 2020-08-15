@@ -12,7 +12,7 @@
 </head>
 <body data-spy="scroll" data-target="#navbar-example">
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-fixed-top">
     <div class="container">
 
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -37,11 +37,11 @@
                 <li><a href="under_costruction.html">Contatti</a></li>
 
                 <li>
-                    <form class="navbar-form navbar-left" role="search" action="search.html">
+                    <form class="navbar-form navbar-left" role="search" action="search.php" method="GET">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" name="search" placeholder="Search">
                         </div>
-                        <button type="submit" class="btn btn-info glyphicon glyphicon-search" onclick="location.href = 'search.html';"></button>
+                        <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
                     </form>
                 </li>
 
@@ -65,8 +65,7 @@
 
     // Get search string from $_GET['search']
     // but do it IN A SECURE WAY
-    $search = "1"; // replace null with $_GET and sanitization
-    //$search = $_GET["search"]; // replace null with $_GET and sanitization
+    $search = $_GET["search"]; // replace null with $_GET and sanitization
     $search_S = filter_var($search, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     if (empty($search))
     {
@@ -135,8 +134,8 @@
     // Search on database
     $results = search($search, $con);
     ?>
-    <div id="list_grid" class="well well-sm" style="visibility: hidden">
-        <strong>Results</strong>
+    <div id="list_grid" class="well well-sm">
+        <br><br><strong>Results</strong>
         <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
             </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
@@ -182,3 +181,10 @@
 </div><!-- / container -->
 </body>
 </html>
+
+<script>
+    $(document).ready(function() {
+        $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+        $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+    });
+</script>

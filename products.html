@@ -32,22 +32,17 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li><a href=accedi.html>Accedi</a></li>
-                <li><a href="#four-columns">4 Columns</a></li>
+                <li><a href="under_costruction.html">Chi siamo</a></li>
+                <li><a href="products.html">Prodotti</a></li>
+                <li><a href="under_costruction.html">Contatti</a></li>
 
-                <li><a href="#two-columns">2 Columns</a></li>
-
-
-
-                <li><a href="#">Link</a></li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown 2 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
+                <li>
+                    <form class="navbar-form navbar-left" role="search" action="search.php" method="GET">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search" required>
+                        </div>
+                        <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
+                    </form>
                 </li>
 
             </ul>
@@ -82,12 +77,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
-        $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
-    });
-</script>
+
 
 </body>
 </html>
@@ -146,9 +136,17 @@
 
             }
         };
-        xmlHttp.open("GET", "search.php?"+infoUtente, true);
+        xmlHttp.open("GET", "mulesearch.php?"+infoUtente, true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
         xmlHttp.send();
     }
 </script>
+
 <script>ajax_get()</script>
+
+<script>
+    $(document).ready(function() {
+        $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+        $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+    });
+</script>

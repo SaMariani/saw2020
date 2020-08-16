@@ -50,7 +50,7 @@ if(!isset($_SESSION['myusersaw']))
                 <li>
                     <form class="navbar-form navbar-left" role="search" action="search.php" method="GET">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search">
+                            <input type="text" class="form-control" name="search" placeholder="Search" required>
                         </div>
                         <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
                     </form>

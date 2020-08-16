@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="style4products.css">
+    <link rel="stylesheet" href="codepenStyleForProducts.css">
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,7 +12,7 @@
 </head>
 <body data-spy="scroll" data-target="#navbar-example">
 
-<nav class="navbar navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
 
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -39,7 +39,7 @@
                 <li>
                     <form class="navbar-form navbar-left" role="search" action="search.php" method="GET">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search">
+                            <input type="text" class="form-control" name="search" placeholder="Search" required>
                         </div>
                         <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
                     </form>
@@ -50,7 +50,6 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div class="container">
 
     <?php
     // TODO: change credentials in the db/mysql_credentials.php file
@@ -134,17 +133,12 @@
         $results = search($search, $con);
     }
     ?>
-    <div id="list_grid" class="well well-sm">
-        <br><br><strong>Results</strong>
-        <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-                    class="glyphicon glyphicon-th"></span>Grid</a>
-        </div>
-    </div>
 
-    <div id="product-grid" class="row list-group">
-        <div class="txt-heading">Products</div>
+<div class="container"  style="margin-top: 100px">
+
+
+
+    <div id="product" class="row list-group">
         <?php
         if ($results !== null)
         {
@@ -154,15 +148,33 @@
             foreach ($product_array as $key => $value)
             {
                 ?>
-                <div class="product-item">
-                    <form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["codice"]; ?>">
-                        <div class="product-image"><img src="<?php echo $product_array[$key]["descrizione"]; ?>"></div>
-                        <div class="product-tile-footer">
-                            <div class="product-title"><?php echo $product_array[$key]["nomeprodotto"]; ?></div>
-                            <div class="product-price"><?php echo "$" . $product_array[$key]["prezzo"]; ?></div>
-                            <div class="cart-action"><input type="text" class="product-quantity" name="quantity" value="1" size="2" /><input type="submit" value="Add to Cart" class="btnAddAction" /></div>
+                <div class="item  col-xs-4 col-lg-4">
+                    <div class="thumbnail">
+                        <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                        <div class="caption">
+                            <h4 class="group inner list-group-item-heading">
+                                <?php echo $product_array[$key]["nomeprodotto"]; ?>
+                            </h4>
+                            <p class="group inner list-group-item-text">
+                                Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                                sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-4">
+                                    <p class="lead">
+                                        <?php echo $product_array[$key]["prezzo"]; ?> €
+                                    </p>
+                                </div>
+                                <form method="post" action="cart.php?action=add&code=<?php echo $product_array[$key]["codice"]; ?>">
+                                    <div class="col-xs-12 col-md-4">
+                                        <input type="text" class="product-quantity" name="quantity" value="1" size="2" />
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <input type="submit" value="Add to Cart" class="btn-success" />
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <?php
             }
@@ -181,10 +193,3 @@
 </div><!-- / container -->
 </body>
 </html>
-
-<script>
-    $(document).ready(function() {
-        $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
-        $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
-    });
-</script>

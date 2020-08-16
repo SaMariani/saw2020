@@ -8,6 +8,12 @@
     border-radius: 0px;
 }
 
+.product-quantity {
+    padding: 6px 10px;
+    border-radius: 3px;
+    border: #E0E0E0 1px solid;
+}
+
 .item.list-group-item
 {
     float: none;

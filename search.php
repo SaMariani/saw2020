@@ -93,46 +93,46 @@
 
     if (!$state)
     {
-        sendMessage($success, $error);
-        die;
-    }
+        $results=null;
+    }else{
 
-    function sendLines(string $success, string $error):
-    void
-    {
-        $comunicateResults = ['success' => $success, 'error' => $error];
-        $myJSON = json_encode($comunicateResults);
-        echo $myJSON;
-    }
-
-    function search($search, $db_connection)
-    {
-        // TODO: search logic here
-        // prepare and bind
-        $search = "%" . $search . "%";
-        $stmt = $db_connection->prepare("select * from prodotti where codice like ? OR nomeprodotto like ? OR descrizione like ? OR prezzo like ?");
-        $stmt->bind_param("ssss", $search, $search, $search, $search);
-        $stmt->execute();
-        $resultRows = $stmt->get_result();
-        $stmt->close();
-        if ($resultRows->num_rows > 0)
+        function sendLines(string $success, string $error):
+        void
         {
-            $allProducts = array();
-            while ($row = $resultRows->fetch_assoc())
-            {
-                $product = ['codice' => $row["codice"], 'nomeprodotto' => $row["nomeprodotto"], 'descrizione' => $row["descrizione"], 'prezzo' => $row["prezzo"]];
-                array_push($allProducts, $product);
-            }
-            return $allProducts;
+            $comunicateResults = ['success' => $success, 'error' => $error];
+            $myJSON = json_encode($comunicateResults);
+            echo $myJSON;
         }
-        else return null;
 
-        // Return array of results
+        function search($search, $db_connection)
+        {
+            // TODO: search logic here
+            // prepare and bind
+            $search = "%" . $search . "%";
+            $stmt = $db_connection->prepare("select * from prodotti where codice like ? OR nomeprodotto like ? OR descrizione like ? OR prezzo like ?");
+            $stmt->bind_param("ssss", $search, $search, $search, $search);
+            $stmt->execute();
+            $resultRows = $stmt->get_result();
+            $stmt->close();
+            if ($resultRows->num_rows > 0)
+            {
+                $allProducts = array();
+                while ($row = $resultRows->fetch_assoc())
+                {
+                    $product = ['codice' => $row["codice"], 'nomeprodotto' => $row["nomeprodotto"], 'descrizione' => $row["descrizione"], 'prezzo' => $row["prezzo"]];
+                    array_push($allProducts, $product);
+                }
+                return $allProducts;
+            }
+            else return null;
 
+            // Return array of results
+
+        }
+
+        // Search on database
+        $results = search($search, $con);
     }
-
-    // Search on database
-    $results = search($search, $con);
     ?>
     <div id="list_grid" class="well well-sm">
         <br><br><strong>Results</strong>

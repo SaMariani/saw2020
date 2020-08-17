@@ -46,6 +46,8 @@
                     </form>
                 </li>
 
+                <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+
             </ul>
 
         </div><!-- /.navbar-collapse -->
@@ -92,6 +94,7 @@
 </html>
 
 <script>
+    var listgrid = document.getElementById("list_grid");
     window.onload = function () {
         var url = document.location.href,
             params = url.split('?')[1].split('&'),
@@ -100,7 +103,7 @@
             tmp = params[i].split('=');
             data[tmp[0]] = tmp[1];
         }
-        //document.getElementById('infoE').innerHTML = data.search;
+
         var xmlHttp;
         if (window.XMLHttpRequest){
             xmlHttp = new XMLHttpRequest();
@@ -110,7 +113,7 @@
         //var a = document.getElementById("search").value;
         var a = data.search;
 
-        var infoUtente = "search="+a;
+        var info = "search="+a;
 
         xmlHttp.onreadystatechange = function () {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
@@ -145,15 +148,12 @@
                                                 "<p class='lead'>"+
                                                 myObj[x].prezzo + " €</p>"+
                                             "</div>"+
-                                            "<form"+
-                                                myObj.codice+"'>"+
                                                 "<div class='col-xs-12 col-md-4'>"+
-                                                    "<input type='text' class='product-quantity' name='quantity' value='1' size='2' />"+
+                                                    "<input type='text' class='product-quantity' name='quantity' value='1' size='2' id='" + myObj[x].codice + "'/>"+
                                                 "</div>"+
                                                 "<div class='col-xs-12 col-md-4'>"+
-                                                    "<input type='submit' value='Add to Cart' class='btn-success' onclick='ajax_get()'/>"+
+                                                    "<input type='submit' value='Add to Cart' class='btn-success' onclick='ajax_get(" + myObj[x].codice + ")'/>"+
                                                 "</div>"+
-                                            "</form>"+
                                         "</div>"+
                                     "</div>"+
                                 "</div>"+
@@ -164,7 +164,7 @@
                 }
             }
         };
-        xmlHttp.open("GET", "mulesearch.php?"+infoUtente, true);
+        xmlHttp.open("GET", "mulesearch.php?"+info, true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
         xmlHttp.send();
     }
@@ -173,10 +173,12 @@
 <script type="text/javascript">
     var err = document.getElementById("infoE");
     var res = document.getElementById("products");
-    var listgrid = document.getElementById("list_grid");
+
 
     var x, template = "";
-    function ajax_get() {
+    function ajax_get(codice) {
+        //idquantity=datiprodotto.codice;
+        var quantity = document.getElementById(codice).value;
         var xmlHttp;
         if (window.XMLHttpRequest){
             xmlHttp = new XMLHttpRequest();
@@ -185,60 +187,15 @@
         }
         //var a = document.getElementById("search").value;
 
-        var infoUtente = "search="+"2";
+        var info = "codice="+codice+"&quantity="+quantity;
 
         xmlHttp.onreadystatechange = function () {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
 
-                var myObj = JSON.parse(xmlHttp.responseText);
-                //console.log(myObj);
-                if(myObj.error!==""&&myObj.error!==undefined){
-                    res.innerHTML = "";
-                    err.innerHTML = myObj.error;
-                }
-                else{
-                    //window.location.replace("officialhome.php");
-                    err.innerHTML = "";
-                    res.innerHTML = "";
-                    txt="";
-                    template="";
-                    listgrid.style.visibility='visible';
-                    txt += "<table border='1'>"
-                    for (x in myObj) {
-
-                        template+="<div class='item  col-xs-4 col-lg-4'>"+
-                                "<div class='thumbnail'>"+
-                                    "<img class='group list-group-image' src='http://placehold.it/400x250/000/fff' alt='' />"+
-                                    "<div class='caption'>"+
-                                        "<h4 class='group inner list-group-item-heading'>"+
-                                        myObj[x].nomeprodotto + "</h4>"+
-                                        "<p class='group inner list-group-item-text'>"+
-                                        myObj[x].descrizione + "</p>"+
-                                        "<div class='row'>"+
-                                            "<div class='col-xs-12 col-md-4'>"+
-                                            "<p class='lead'>"+
-                                            myObj[x].prezzo + " €</p>"+
-                                            "</div>"+
-                                            "<form method='post' action='cart.php?action=add&code="+
-                                            myObj[x].codice+">"+
-                                                 "<div class='col-xs-12 col-md-4'>"+
-                                                    "<input type='text' class='product-quantity' name='quantity' value='1' size='2' />"+
-                                                "</div>"+
-                                                "<div class='col-xs-12 col-md-4'>"+
-                                                    "<input type='submit' value='Add to Cart' class='btn-success' />"+
-                                                "</div>"+
-                                            "</form>"+
-                                        "</div>"+
-                                    "</div>"+
-                                "</div>"+
-                            "</div>";
-                    }
-                    res.innerHTML=template;
-
-                }
+                err.innerHTML=xmlHttp.responseText;
             }
         };
-        xmlHttp.open("GET", "mulesearch.php?"+infoUtente, true);
+        xmlHttp.open("GET", "cart.php?action=add&"+info, true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
         xmlHttp.send();
     }

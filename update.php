@@ -56,6 +56,8 @@ if(!isset($_SESSION['myusersaw']))
                     </form>
                 </li>
 
+                <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+
                 <li class="dropdown btn-info">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Ciao <?php echo $_SESSION['myusersaw']; ?>

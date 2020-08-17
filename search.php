@@ -37,7 +37,7 @@
                 <li><a href="under_costruction.html">Contatti</a></li>
 
                 <li>
-                    <form class="navbar-form navbar-left" role="search" action="search.php" method="GET">
+                    <form class="navbar-form navbar-left" role="search" action="search.html" method="GET">
                         <div class="form-group">
                             <input type="text" class="form-control" name="search" placeholder="Search" required>
                         </div>
@@ -64,7 +64,8 @@
 
     // Get search string from $_GET['search']
     // but do it IN A SECURE WAY
-    $search = $_GET["search"]; // replace null with $_GET and sanitization
+    //$search = $_GET["search"]; // replace null with $_GET and sanitization
+    $search = "1";
     $search_S = filter_var($search, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     if (empty($search))
     {

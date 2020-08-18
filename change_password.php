@@ -10,12 +10,12 @@ if(!isset($_SESSION['myusersaw']))
 
 
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -33,7 +33,7 @@ if(!isset($_SESSION['myusersaw']))
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=index.html>BETO LOGOS</a>
+            <a class="navbar-brand" href="home.php">UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,17 +41,28 @@ if(!isset($_SESSION['myusersaw']))
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><p>Ciao <?php echo $_SESSION['myusersaw']; ?> </p></li>
-                <li><a href="#four-columns">4 Columns</a></li>
-
-                <li><a href="#two-columns">2 Columns</a></li>
-
+                <li><a href="under_costruction.html">Chi siamo</a></li>
+                <li><a href="products.html">Prodotti</a></li>
+                <li><a href="under_costruction.html">Contatti</a></li>
 
 
-                <li><a href="destroySession.php">LOGOUT</a></li>
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">I miei dati <span class="caret"></span></a>
+                <li>
+                    <form class="navbar-form navbar-left" role="search" action="search.html" method="GET">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search" required>
+                        </div>
+                        <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
+                    </form>
+                </li>
+
+                <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+
+                <li class="dropdown btn-info">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Ciao <?php echo $_SESSION['myusersaw']; ?>
+                        <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="show_profile.php">Visualizza profilo</a></li>
                         <li><a href="update.php">Modifica profilo</a></li>
@@ -59,6 +70,8 @@ if(!isset($_SESSION['myusersaw']))
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
+
+                <li><a href="destroySession.php">LOGOUT</a></li>
 
             </ul>
 

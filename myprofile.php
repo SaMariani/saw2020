@@ -11,12 +11,13 @@ if(!isset($_SESSION['myusersaw']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 </head>
 <body data-spy="scroll" data-target="#navbar-example">
@@ -32,7 +33,7 @@ if(!isset($_SESSION['myusersaw']))
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="officialhome.php">BETO LOGOS</a>
+      <a class="navbar-brand" href="home.php">UN LOGO</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

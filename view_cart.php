@@ -3,13 +3,18 @@ session_start();
 ?>
 
 <HTML>
-<HEAD>
-    <TITLE>Simple PHP Shopping Cart</TITLE>
-    <link href="cartstyle.css" type="text/css" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
 
+    <link href="css/cartstyle.css" type="text/css" rel="stylesheet" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-</HEAD>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
 <BODY>
 
 
@@ -24,7 +29,7 @@ session_start();
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=index.html>BETO LOGOS</a>
+            <a class="navbar-brand" href=index.html>UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,7 +37,7 @@ session_start();
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href=accedi.html>Accedi</a></li>
+                <li><a href="accedi.html"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
                 <li><a href="under_costruction.html">Chi siamo</a></li>
                 <li><a href="products.html">Prodotti</a></li>
                 <li><a href="under_costruction.html">Contatti</a></li>
@@ -54,61 +59,62 @@ session_start();
     </div><!-- /.container-fluid -->
 </nav>
 
+<div class="container" style="margin-top: 100px">
+    <div id="shopping-cart" style="margin-top: 100px">
+        <div class="txt-heading">Shopping Cart</div>
 
-<div id="shopping-cart" style="margin-top: 100px">
-    <div class="txt-heading">Shopping Cart</div>
-
-    <a id="btnEmpty" href="cart.php?action=empty">Empty Cart</a>
-    <?php
-    if (isset($_SESSION["cart_item"]))
-    {
-        $total_quantity = 0;
-        $total_price = 0;
-        ?>
-        <table class="tbl-cart" cellpadding="10" cellspacing="1">
-            <tbody>
-            <tr>
-                <th style="text-align:left;">Nome prodotto</th>
-                <th style="text-align:left;">codice</th>
-                <th style="text-align:right;" width="5%">Quantity</th>
-                <th style="text-align:right;" width="10%">Unit prezzo</th>
-                <th style="text-align:right;" width="10%">prezzo</th>
-                <th style="text-align:center;" width="5%">Remove</th>
-            </tr>
-            <?php
-            foreach ($_SESSION["cart_item"] as $item)
-            {
-                $item_price = $item["quantity"] * $item["prezzo"];
-                ?>
+        <a id="btnEmpty" href="cart.php?action=empty">Empty Cart</a>
+        <?php
+        if (isset($_SESSION["cart_item"]))
+        {
+            $total_quantity = 0;
+            $total_price = 0;
+            ?>
+            <table class="table table-hover" cellpadding="10" cellspacing="1">
+                <tbody>
                 <tr>
-                    <td><img src="<?php echo $item["image"]; ?>" class="cart-item-image" /><?php echo $item["nomeprodotto"]; ?></td>
-                    <td><?php echo $item["codice"]; ?></td>
-                    <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
-                    <td  style="text-align:right;"><?php echo "$ " . $item["prezzo"]; ?></td>
-                    <td  style="text-align:right;"><?php echo "$ " . number_format($item_price, 2); ?></td>
-                    <td style="text-align:center;"><a href="cart.php?action=remove&codice=<?php echo $item["codice"]; ?>" class="btnRemoveAction"><img src="icon-delete.png" alt="Remove Item" /></a></td>
+                    <th style="text-align:left;">Nome prodotto</th>
+                    <th style="text-align:left;">codice</th>
+                    <th style="text-align:right;" width="5%">Quantity</th>
+                    <th style="text-align:right;" width="10%">Unit prezzo</th>
+                    <th style="text-align:right;" width="10%">prezzo</th>
+                    <th style="text-align:center;" width="5%">Remove</th>
                 </tr>
                 <?php
-                $total_quantity += $item["quantity"];
-                $total_price += ($item["prezzo"] * $item["quantity"]);
-            }
-            ?>
+                foreach ($_SESSION["cart_item"] as $item)
+                {
+                    $item_price = $item["quantity"] * $item["prezzo"];
+                    ?>
+                    <tr>
+                        <td><img src="" class="cart-item-image" /><?php echo $item["nomeprodotto"]; ?></td>
+                        <td><?php echo $item["codice"]; ?></td>
+                        <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
+                        <td  style="text-align:right;"><?php echo "€ " . $item["prezzo"]; ?></td>
+                        <td  style="text-align:right;"><?php echo "€ " . number_format($item_price, 2); ?></td>
+                        <td style="text-align:center;"><a href="cart.php?action=remove&codice=<?php echo $item["codice"]; ?>" class="btnRemoveAction"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    </tr>
+                    <?php
+                    $total_quantity += $item["quantity"];
+                    $total_price += ($item["prezzo"] * $item["quantity"]);
+                }
+                ?>
 
-            <tr>
-                <td colspan="2" align="right">Total:</td>
-                <td align="right"><?php echo $total_quantity; ?></td>
-                <td align="right" colspan="2"><strong><?php echo "$ " . number_format($total_price, 2); ?></strong></td>
-                <td></td>
-            </tr>
-            </tbody>
-        </table>
-        <?php
-    }
-    else
-    {
+                <tr>
+                    <td colspan="2" align="right">Total:</td>
+                    <td align="right"><?php echo $total_quantity; ?></td>
+                    <td align="right" colspan="2"><strong><?php echo "€ " . number_format($total_price, 2); ?></strong></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <?php
+        }
+        else
+        {
+            ?>
+            <div class="no-records">Your Cart is Empty</div>
+            <?php
+        }
         ?>
-        <div class="no-records">Your Cart is Empty</div>
-        <?php
-    }
-    ?>
+    </div>
 </div>

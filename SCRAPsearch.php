@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="codepenStyleForProducts.css">
 
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <body data-spy="scroll" data-target="#navbar-example">
@@ -23,7 +26,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=index.html>BETO LOGOS</a>
+            <a class="navbar-brand" href=index.html>UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -31,7 +34,7 @@
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href=accedi.html>Accedi</a></li>
+                <li><a href="accedi.html"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
                 <li><a href="under_costruction.html">Chi siamo</a></li>
                 <li><a href="products.html">Prodotti</a></li>
                 <li><a href="under_costruction.html">Contatti</a></li>

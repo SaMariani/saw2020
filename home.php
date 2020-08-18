@@ -14,7 +14,8 @@ if(!isset($_SESSION['myusersaw']))
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -32,7 +33,7 @@ if(!isset($_SESSION['myusersaw']))
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="officialhome.php">BETO LOGOS</a>
+            <a class="navbar-brand" href="home.php">UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,7 +42,7 @@ if(!isset($_SESSION['myusersaw']))
             <ul class="nav navbar-nav navbar-right">
 
                 <li><a href="under_costruction.html">Chi siamo</a></li>
-                <li><a href="products.html">Prodotti</a></li>
+                <li><a href="products.php">Prodotti</a></li>
                 <li><a href="under_costruction.html">Contatti</a></li>
 
 
@@ -92,19 +93,19 @@ if(!isset($_SESSION['myusersaw']))
     <div class="carousel-inner" role="listbox">
         <div class="item active" style="background-image: url(https://images.unsplash.com/photo-1578844251758-2f71da64c96f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80);">
             <div class="carousel-caption animated fadeInUp">
-                <h3>Slide 1 lorem ipsum</h3>
+                <h3>Slide 1 titolo</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quas perferendis nisi rerum laudantium amet vitae. Nostrum dolore hic, perferendis dignissimos alias dolores amet. Mollitia similique omnis esse dignissimos aliquid.</p>
             </div>
         </div>
         <div class="item" style="background-image: url(https://images.unsplash.com/photo-1568644310089-8fce475968a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1106&q=80);">
             <div class="carousel-caption animated fadeInUp">
-                <h3>Slide 2 lorem ipsum</h3>
+                <h3>Slide 2 titolo</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quas perferendis nisi rerum laudantium amet vitae. Nostrum dolore hic, perferendis dignissimos alias dolores amet. Mollitia similique omnis esse dignissimos aliquid.</p>
             </div>
         </div>
         <div class="item" style="background-image: url(https://images.unsplash.com/photo-1559674697-7ebabb38c369?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);">
             <div class="carousel-caption animated fadeInUp">
-                <h3>Slide 3 lorem ipsum</h3>
+                <h3>Slide 3 titolo</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quas perferendis nisi rerum laudantium amet vitae. Nostrum dolore hic, perferendis dignissimos alias dolores amet. Mollitia similique omnis esse dignissimos aliquid.</p>
             </div>
         </div>

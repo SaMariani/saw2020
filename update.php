@@ -15,14 +15,15 @@ if(!isset($_SESSION['myusersaw']))
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 </head>
 <body data-spy="scroll" data-target="#navbar-example">
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
 
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -33,7 +34,7 @@ if(!isset($_SESSION['myusersaw']))
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="officialhome.php">BETO LOGOS</a>
+            <a class="navbar-brand" href="home.php">UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

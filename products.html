@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="codepenStyleForProducts.css">
+    <title>Document</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <body data-spy="scroll" data-target="#navbar-example">
@@ -23,7 +26,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=index.html>BETO LOGOS</a>
+            <a class="navbar-brand" href=index.html>UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -31,7 +34,7 @@
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href=accedi.html>Accedi</a></li>
+                <li><a href="accedi.html"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
                 <li><a href="under_costruction.html">Chi siamo</a></li>
                 <li><a href="products.html">Prodotti</a></li>
                 <li><a href="under_costruction.html">Contatti</a></li>
@@ -89,7 +92,6 @@
     var listgrid = document.getElementById("list_grid");
 
     var x, template = "";
-    function ajax_get() {
         var xmlHttp;
         if (window.XMLHttpRequest){
             xmlHttp = new XMLHttpRequest();
@@ -112,39 +114,86 @@
                     txt += "<table border='1'>"
                     for (x in myObj) {
 
-                        template+="<div class='item  col-xs-4 col-lg-4'>"+
+                        template+=
+                            "<div class='item  col-xs-4 col-lg-4'>"+
                             "<div class='thumbnail'>"+
                             "<img class='group list-group-image' src='http://placehold.it/400x250/000/fff' alt='' />"+
                             "<div class='caption'>"+
                             "<h4 class='group inner list-group-item-heading'>"+
                             myObj[x].nomeprodotto + "</h4>"+
-                            "<p class='group inner list-group-item-text'>"+
+                            "<p class='group inner list-group-item-text' style='margin-top: 10px'>"+
                             myObj[x].descrizione + "</p>"+
-                            "<div class='row'>"+
-                            "<div class='col-xs-12 col-md-6'>"+
+                            "<div class='row' style='margin-top: 10px'>"+
+                            "<div class='col-xs-12 col-md-4'>"+
                             "<p class='lead'>"+
                             myObj[x].prezzo + " €</p>"+
                             "</div>"+
-                            "<div class='col-xs-12 col-md-6'>"+
-                            "<a class='btn btn-success' href=''>Add to cart</a>"+
+                            "<div class='col-xs-12 col-md-4'>"+
+                            "<input type='text' class='product-quantity' name='quantity' value='1' size='2' id='" + myObj[x].codice + "'/>"+
+                            "</div>"+
+                            "<div class='col-xs-12 col-md-4'>"+
+                            "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='ajax_get(" + myObj[x].codice + ")'>Compra</button>"+
+                            "</div>"+
+                            "<!-- Modal -->"+
+                            "<div class='modal fade' id='myModal' role='dialog'>"+
+                            "<div class='modal-dialog modal-sm'>"+
+                            "<div class='modal-content'>"+
+                            "<div class='modal-header'>"+
+                            "<button type='button' class='close' data-dismiss='modal'>&times;</button>"+
+                            "<h4 class='modal-title'>Aggiunto al carrello!</h4>"+
+                            "</div>"+
+                            "<div class='modal-body'>"+
+                            "<p>" +
+                            //myObj[x].nomeprodotto+"</p>"+
+                            "</div>"+
+                            "<div class='modal-footer'>"+
+                            "<a href='view_cart.php'><button type='button' class='btn btn-primary'>Termina acquisto</button></a>"+
+                            "&nbsp&nbsp<button type='button' class='btn btn-default' data-dismiss='modal'>Prosegui</button>"+
                             "</div>"+
                             "</div>"+
                             "</div>"+
                             "</div>"+
-                            "</div>";
+                            "</div>"+
+                            "</div>"+
+                            "</div>"+
+                            "</div>"
                     }
-                    res.innerHTML=template;
+                res.innerHTML=template;
 
 
             }
         };
-        xmlHttp.open("GET", "mulesearch.php?"+infoUtente, true);
+        xmlHttp.open("GET", "allproducts.php?"+infoUtente, true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
         xmlHttp.send();
+</script>
+
+<script type="text/javascript">
+
+    var x, template = "";
+    function ajax_get(codice) {
+        var quantity = document.getElementById(codice).value;
+        var xmlHttp;
+        if (window.XMLHttpRequest){
+            xmlHttp = new XMLHttpRequest();
+        }else {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
+        }
+
+        var info = "codice="+codice;
+        var infoquant = "quantity="+quantity;
+
+        xmlHttp.onreadystatechange = function () {
+            if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
+                console.log(xmlHttp.responseText);
+            }
+        };
+        xmlHttp.open("POST", "cart.php?action=add&"+info, true);
+        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
+        xmlHttp.send(infoquant);
     }
 </script>
 
-<script>ajax_get()</script>
 
 <script>
     $(document).ready(function() {

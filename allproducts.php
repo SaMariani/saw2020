@@ -8,22 +8,8 @@ require_once('db/mysql_credentials.php');
 // Open DBMS Server connection
 include_once 'openDBMSconnection.php';
 
-$state = true;
 $success="";
 $error="";
-
-// Get search string from $_GET['search']
-// but do it IN A SECURE WAY
-$search = $_GET["search"]; // replace null with $_GET and sanitization
-$search_S = filter_var($search, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-if(empty($search)) {
-    $error .= "Nessuna stringa da cercare, inserisci per favore<br>";
-    $state = false;
-}else if(!$search_S) {
-    $error .= "Stringa non valida<br>";
-    $state = false;
-}
-$search = $search_S;
 
 /**
  * @param string $success
@@ -39,27 +25,10 @@ function sendMessage(string $success, string $error): void
     echo $myJSON;
 }
 
-if(!$state) {
-    sendMessage($success, $error);
-    die;
-}
-
-function sendLines(string $success, string $error): void
-{
-    $comunicateResults = [
-        'success' => $success,
-        'error' => $error
-    ];
-    $myJSON = json_encode($comunicateResults);
-    echo $myJSON;
-}
-
-function search($search, $db_connection) {
-    // TODO: search logic here
+function getProducts($db_connection) {
+    // TODO: getProducts logic here
     // prepare and bind
-    $search="%".$search."%";
     $stmt = $db_connection->prepare("select * from prodotti");
-    //$stmt->bind_param("ssss", $search, $search, $search, $search);
     $stmt->execute();
     $resultRows = $stmt->get_result();
     $stmt->close();
@@ -82,7 +51,7 @@ function search($search, $db_connection) {
 }
 
 // Search on database
-$results = search($search, $con);
+$results = getProducts($con);
 
 if ($results!==null) {
     $myJSON = json_encode($results);
@@ -94,6 +63,6 @@ if ($results!==null) {
     }*/
 } else {
     // No matches found
-    $error .= "No results found";
+    $error .= "No products found";
     sendMessage($success, $error);
 }

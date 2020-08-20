@@ -64,7 +64,6 @@
 
 
     <div class="error" id="infoE"></div>
-    <div class="success" id="infoCART"></div>
 
     <div id="list_grid" class="well well-sm" style="visibility: hidden">
         <strong>Results</strong>
@@ -114,22 +113,18 @@
         }else {
             xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
         }
-        //var a = document.getElementById("search").value;
-        var a = data.search;
 
-        var info = "search="+a;
+        var info = "search="+data.search;;
 
         xmlHttp.onreadystatechange = function () {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
 
                 var myObj = JSON.parse(xmlHttp.responseText);
-                //console.log(myObj);
                 if(myObj.error!==""&&myObj.error!==undefined){
                     res.innerHTML = "";
                     err.innerHTML = myObj.error;
                 }
                 else{
-                    //window.location.replace("home.php");
                     err.innerHTML = "";
                     res.innerHTML = "";
                     txt="";
@@ -153,10 +148,10 @@
                                                 myObj[x].prezzo + " €</p>"+
                                             "</div>"+
                                                 "<div class='col-xs-12 col-md-4'>"+
-                                                    "<input type='text' class='product-quantity' name='quantity' value='1' size='2' id='" + myObj[x].codice + "'/>"+
+                                                    "<input type='number' class='product-quantity' name='quantity' value='1' size='2' id='" + myObj[x].codice + "'/>"+
                                                 "</div>"+
                                                 "<div class='col-xs-12 col-md-4'>"+
-                                                    "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='ajax_get(" + myObj[x].codice + ")'>Compra</button>"+
+                                                    "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='ajax_get(\"" + myObj[x].codice + "\")'>Compra</button>"+
                                                 "</div>"+
                                                 "<!-- Modal -->"+
                                                 "<div class='modal fade' id='myModal' role='dialog'>"+
@@ -195,13 +190,10 @@
 
 <script type="text/javascript">
     var err = document.getElementById("infoE");
-    var updatecart = document.getElementById("infoCART");
-    var res = document.getElementById("products");
 
 
     var x, template = "";
     function ajax_get(codice) {
-        //idquantity=datiprodotto.codice;
         var quantity = document.getElementById(codice).value;
         var xmlHttp;
         if (window.XMLHttpRequest){
@@ -209,10 +201,8 @@
         }else {
             xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
         }
-        //var a = document.getElementById("search").value;
 
         var info = "codice="+codice+"&quantity="+quantity;
-        //updatecart.innerHTML=quantity+" Aggiunto al carrello!";
         xmlHttp.onreadystatechange = function () {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
                 err.innerHTML=xmlHttp.responseText;

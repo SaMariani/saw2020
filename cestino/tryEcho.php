@@ -1,5 +1,5 @@
 <?php
-function sendLines(string $success, string $error): void
+function sendLines(string $success, string $error)
 {
     $comunicateResults = array();
     $ok=['success' => $success, 'error' => $error];

@@ -88,7 +88,7 @@ function insert_user($email, $first_name, $last_name, $password, $password_confi
  * @param string $success
  * @param string $error
  */
-function sendMessage(string $success, string $error): void
+function sendMessage(string $success, string $error)
 {
     $comunicateResults = [
         'success' => $success,

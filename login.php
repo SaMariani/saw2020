@@ -5,9 +5,6 @@ require_once('db/mysql_credentials.php');
 
 // Add session control, header, ...
 session_start();//avvia la sessione
-//$_SESSION['myusersaw']='Pedro';
-//header("Location:mulehome.php");
-//se gia loggto??
 
 // Open DBMS Server connection
 include_once 'openDBMSconnection.php';
@@ -39,7 +36,7 @@ if(empty($pass)) {
  * @param string $success
  * @param string $error
  */
-function sendMessage(string $success, string $error): void
+function sendMessage(string $success, string $error)
 {
     $comunicateResults = [
         'success' => $success,

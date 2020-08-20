@@ -45,7 +45,7 @@ $last_name = $last_name_S;
  * @param string $success
  * @param string $error
  */
-function sendMessage(string $success, string $error): void
+function sendMessage(string $success, string $error)
 {
     $comunicateResults = [
         'success' => $success,

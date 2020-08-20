@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Document</title>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/codepenStyleForProducts.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -26,7 +26,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=index.html>UN LOGO</a>
+            <a class="navbar-brand" href=../index.html>UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -34,13 +34,13 @@
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="accedi.html"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
-                <li><a href="under_costruction.html">Chi siamo</a></li>
-                <li><a href="products.html">Prodotti</a></li>
-                <li><a href="under_costruction.html">Contatti</a></li>
+                <li><a href="../accedi.html"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
+                <li><a href="../under_costruction.html">Chi siamo</a></li>
+                <li><a href="../products.html">Prodotti</a></li>
+                <li><a href="../under_costruction.html">Contatti</a></li>
 
                 <li>
-                    <form class="navbar-form navbar-left" role="search" action="search.html" method="GET">
+                    <form class="navbar-form navbar-left" role="search" action="../search.html" method="GET">
                         <div class="form-group">
                             <input type="text" class="form-control" name="search" placeholder="Search" required>
                         </div>
@@ -48,7 +48,7 @@
                     </form>
                 </li>
 
-                <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                <li><a href="../view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
             </ul>
 
@@ -58,7 +58,7 @@
 
     <?php
     // TODO: change credentials in the db/mysql_credentials.php file
-    require_once ('db/mysql_credentials.php');
+    require_once('db/mysql_credentials.php');
 
     // Open DBMS Server connection
     include_once 'openDBMSconnection.php';
@@ -170,7 +170,7 @@
                                         <?php echo $product_array[$key]["prezzo"]; ?> €
                                     </p>
                                 </div>
-                                <form method="post" action="cart.php?action=add&code=<?php echo $product_array[$key]["codice"]; ?>">
+                                <form method="post" action="../cart.php?action=add&code=<?php echo $product_array[$key][">
                                     <div class="col-xs-12 col-md-4">
                                         <input type="text" class="product-quantity" name="quantity" value="1" size="2" />
                                     </div>

@@ -42,7 +42,7 @@ if(!isset($_SESSION['myusersaw']))
             <ul class="nav navbar-nav navbar-right">
 
                 <li><a href="under_costruction.html">Chi siamo</a></li>
-                <li><a href="products.php">Prodotti</a></li>
+                <li><a href="products.html">Prodotti</a></li>
                 <li><a href="under_costruction.html">Contatti</a></li>
 
 

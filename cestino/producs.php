@@ -15,7 +15,7 @@ if(!isset($_SESSION['myusersaw']))
     <title>Document</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
+    <link rel="stylesheet" href="../css/codepenStyleForProducts.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -33,7 +33,7 @@ if(!isset($_SESSION['myusersaw']))
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home.php">UN LOGO</a>
+            <a class="navbar-brand" href="../home.php">UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,14 +62,14 @@ if(!isset($_SESSION['myusersaw']))
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="show_profile.php">Visualizza profilo</a></li>
-                        <li><a href="update.php">Modifica profilo</a></li>
+                        <li><a href="../show_profile.php">Visualizza profilo</a></li>
+                        <li><a href="../update.php">Modifica profilo</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
 
-                <li><a href="destroySession.php">LOGOUT</a></li>
+                <li><a href="../destroySession.php">LOGOUT</a></li>
 
             </ul>
 
@@ -100,7 +100,7 @@ if(!isset($_SESSION['myusersaw']))
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 
 
 
@@ -167,7 +167,7 @@ if(!isset($_SESSION['myusersaw']))
                     myObj[x].nomeprodotto+"</p>"+
                     "</div>"+
                     "<div class='modal-footer'>"+
-                    "<a href='view_cart.php'><button type='button' class='btn btn-primary'>Termina acquisto</button></a>"+
+                    "<a href='../view_cart.php'><button type='button' class='btn btn-primary'>Termina acquisto</button></a>"+
                     "&nbsp&nbsp<button type='button' class='btn btn-default' data-dismiss='modal'>Prosegui</button>"+
                     "</div>"+
                     "</div>"+

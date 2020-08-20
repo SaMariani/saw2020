@@ -97,6 +97,7 @@
 </html>
 
 <script>
+    var res = document.getElementById("products");
     var listgrid = document.getElementById("list_grid");
     window.onload = function () {
         var url = document.location.href,
@@ -114,7 +115,7 @@
             xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
         }
 
-        var info = "search="+data.search;;
+        var info = "search="+data.search;
 
         xmlHttp.onreadystatechange = function () {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
@@ -148,7 +149,7 @@
                                                 myObj[x].prezzo + " €</p>"+
                                             "</div>"+
                                                 "<div class='col-xs-12 col-md-4'>"+
-                                                    "<input type='number' class='product-quantity' name='quantity' value='1' size='2' id='" + myObj[x].codice + "'/>"+
+                                                    "<input type='number' class='product-quantity' name='quantity' value='1' min='1' max='20' id='" + myObj[x].codice + "'/>"+
                                                 "</div>"+
                                                 "<div class='col-xs-12 col-md-4'>"+
                                                     "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='ajax_get(\"" + myObj[x].codice + "\")'>Compra</button>"+
@@ -190,7 +191,6 @@
 
 <script type="text/javascript">
     var err = document.getElementById("infoE");
-
 
     var x, template = "";
     function ajax_get(codice) {

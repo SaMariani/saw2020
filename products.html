@@ -95,7 +95,7 @@
 </body>
 </html>
 
-<script type="text/javascript">
+<script>
     var res = document.getElementById("products");
     var listgrid = document.getElementById("list_grid");
 
@@ -138,7 +138,7 @@
                             myObj[x].prezzo + " €</p>"+
                             "</div>"+
                             "<div class='col-xs-12 col-md-4'>"+
-                            "<input type='number' class='product-quantity' name='quantity' value='1' size='2' id='" + myObj[x].codice + "'/>"+
+                            "<input type='number' class='product-quantity' name='quantity' value='1' min='1' max='20' id='" + myObj[x].codice + "'/>"+
                             "</div>"+
                             "<div class='col-xs-12 col-md-4'>"+
                             "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='ajax_get(\"" + myObj[x].codice + "\")'>Compra</button>"+

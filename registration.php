@@ -65,7 +65,7 @@ if($password != $password_confirm) {
 // Get additional values from $_POST, but do it IN A SECURE WAY
 // If you have additional values, change functions params accordingly
 
-function insert_user($email, $first_name, $last_name, $password, $password_confirm, \mysqli $db_connection) {
+function insert_user($email, $first_name, $last_name, $password, $password_confirm, mysqli $db_connection) {
     // TODO: check if passwords match
     if (strcmp($password, $password_confirm) != 0)
         return false;

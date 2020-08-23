@@ -70,15 +70,15 @@ session_start();
                 $total_quantity = 0;
                 $total_price = 0;
                 ?>
-                <table class="table table-hover" cellpadding="10" cellspacing="1">
+                <table class="table table-hover">
                     <tbody>
                     <tr>
-                        <th style="text-align:left;" width="8%">Codice</th>
+                        <th style="text-align:left;">Codice</th>
                         <th style="text-align:left;">Nome prodotto</th>
-                        <th style="text-align:right;" width="5%">Quantità</th>
-                        <th style="text-align:right;" width="10%">Prezzo</th>
-                        <th style="text-align:right;" width="10%">Parziale</th>
-                        <th style="text-align:center;" width="5%">Remove</th>
+                        <th style="text-align:right;">Quantità</th>
+                        <th style="text-align:right;">Prezzo</th>
+                        <th style="text-align:right;">Parziale</th>
+                        <th style="text-align:center;">Remove</th>
                     </tr>
                     <?php
                     foreach ($_SESSION["cart_item"] as $item)
@@ -87,7 +87,7 @@ session_start();
                         ?>
                         <tr>
                             <td><?php echo $item["codice"]; ?></td>
-                            <td><img src="" class="cart-item-image" /><?php echo $item["nomeprodotto"]; ?></td>
+                            <td><img src="http://placehold.it/400x250/000/fff" class="cart-item-image" alt="prodotto"/><?php echo $item["nomeprodotto"]; ?></td>
                             <td style="text-align:right;">
                                 <button onclick="location.href = 'cart.php?action=minus&codice=<?php echo $item["codice"]; ?>'">-</button>
                                 <?php echo $item["quantity"]; ?>
@@ -104,9 +104,9 @@ session_start();
                     ?>
 
                     <tr>
-                        <td colspan="2" align="right">Totale:</td>
-                        <td align="right"><?php echo $total_quantity; ?></td>
-                        <td align="right" colspan="2"><strong><?php echo "€ " . number_format($total_price, 2); ?></strong></td>
+                        <td colspan="2">Totale:</td>
+                        <td><?php echo $total_quantity; ?></td>
+                        <td colspan="2"><strong><?php echo "€ " . number_format($total_price, 2); ?></strong></td>
                         <td></td>
                     </tr>
                     </tbody>

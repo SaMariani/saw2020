@@ -54,7 +54,7 @@ if(!isset($_SESSION['myusersaw']))
                     </form>
                 </li>
 
-                <li><a href="../view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                <li><a href="../php/view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
                 <li class="dropdown btn-info">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -62,8 +62,8 @@ if(!isset($_SESSION['myusersaw']))
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="../show_profile.php">Visualizza profilo</a></li>
-                        <li><a href="../update.php">Modifica profilo</a></li>
+                        <li><a href="../php/show_profile.php">Visualizza profilo</a></li>
+                        <li><a href="../php/update.php">Modifica profilo</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>
@@ -167,7 +167,7 @@ if(!isset($_SESSION['myusersaw']))
                     myObj[x].nomeprodotto+"</p>"+
                     "</div>"+
                     "<div class='modal-footer'>"+
-                    "<a href='../view_cart.php'><button type='button' class='btn btn-primary'>Termina acquisto</button></a>"+
+                    "<a href='../php/view_cart.php'><button type='button' class='btn btn-primary'>Termina acquisto</button></a>"+
                     "&nbsp&nbsp<button type='button' class='btn btn-default' data-dismiss='modal'>Prosegui</button>"+
                     "</div>"+
                     "</div>"+

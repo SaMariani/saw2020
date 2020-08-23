@@ -48,7 +48,7 @@
                     </form>
                 </li>
 
-                <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                <li><a href="php/view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
             </ul>
 
@@ -156,7 +156,7 @@
                             //myObj[x].nomeprodotto+"</p>"+
                             "</div>"+
                             "<div class='modal-footer'>"+
-                            "<a href='view_cart.php'><button type='button' class='btn btn-primary'>Termina acquisto</button></a>"+
+                            "<a href='php/view_cart.php'><button type='button' class='btn btn-primary'>Termina acquisto</button></a>"+
                             "&nbsp&nbsp<button type='button' class='btn btn-default' data-dismiss='modal'>Prosegui</button>"+
                             "</div>"+
                             "</div>"+
@@ -172,7 +172,7 @@
                 }
             }
         };
-        xmlHttp.open("GET", "allproducts.php?", true);
+        xmlHttp.open("GET", "php/allproducts.php?", true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
         xmlHttp.send();
 </script>
@@ -197,7 +197,7 @@
                 err.innerHTML=xmlHttp.responseText;
             }
         };
-        xmlHttp.open("GET", "cart.php?action=add&"+info, true);
+        xmlHttp.open("GET", "php/cart.php?action=add&"+info, true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
         xmlHttp.send();
     }

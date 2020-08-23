@@ -48,7 +48,7 @@
                     </form>
                 </li>
 
-                <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                <li><a href="php/view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
             </ul>
 
@@ -127,13 +127,13 @@
                     err.innerHTML = myObj.error;
                 }
                 else{
-                    window.location.replace("home.php");
+                    window.location.replace("php/home.php");
                     err.innerHTML = "";
                     res.innerHTML = myObj.success;
                 }
             }
         };
-        xmlHttp.open("POST", "login.php", true);
+        xmlHttp.open("POST", "php/login.php", true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         xmlHttp.send(infoUtente);
     }

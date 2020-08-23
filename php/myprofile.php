@@ -13,9 +13,9 @@ if(!isset($_SESSION['myusersaw']))
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/codepenStyleForProducts.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -41,14 +41,14 @@ if(!isset($_SESSION['myusersaw']))
 
       <ul class="nav navbar-nav navbar-right">
 
-          <li><a href="under_costruction.html">Chi siamo</a></li>
-          <li><a href="products.html">Prodotti</a></li>
-          <li><a href="under_costruction.html">Contatti</a></li>
+          <li><a href="../under_costruction.html">Chi siamo</a></li>
+          <li><a href="../products.html">Prodotti</a></li>
+          <li><a href="../under_costruction.html">Contatti</a></li>
 
 
 
           <li>
-              <form class="navbar-form navbar-left" role="search" action="search.html" method="GET">
+              <form class="navbar-form navbar-left" role="search" action="../search.html" method="GET">
                   <div class="form-group">
                       <input type="text" class="form-control" name="search" placeholder="Search" required>
                   </div>
@@ -121,7 +121,7 @@ if(!isset($_SESSION['myusersaw']))
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>

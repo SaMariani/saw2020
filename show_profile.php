@@ -1,6 +1,6 @@
 <?php
 
-require_once 'db\open_conn_DBMS.php';
+require_once 'db/open_conn_DBMS.php';
 
 $state = true;
 $success="";

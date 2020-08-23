@@ -33,7 +33,7 @@ if(!isset($_SESSION['myusersaw']))
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../home.php">UN LOGO</a>
+            <a class="navbar-brand" href="../php/home.php">UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -69,7 +69,7 @@ if(!isset($_SESSION['myusersaw']))
                     </ul>
                 </li>
 
-                <li><a href="../destroySession.php">LOGOUT</a></li>
+                <li><a href="../php/destroySession.php">LOGOUT</a></li>
 
             </ul>
 
@@ -213,7 +213,7 @@ if(!isset($_SESSION['myusersaw']))
                 //err.innerHTML=xmlHttp.responseText;
             }
         };
-        xmlHttp.open("GET", "cart.php?action=add&"+info, true);
+        xmlHttp.open("GET", "php/cart.php?action=add&"+info, true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
         xmlHttp.send();
     }

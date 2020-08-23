@@ -4,7 +4,7 @@
 session_start();//avvia la sessione
 
 // Open DBMS Server connection
-require_once 'db\open_conn_DBMS.php';
+require_once 'db/open_conn_DBMS.php';
 
 $success="";
 $error="";

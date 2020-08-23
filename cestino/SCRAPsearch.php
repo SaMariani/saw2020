@@ -170,7 +170,7 @@
                                         <?php echo $product_array[$key]["prezzo"]; ?> €
                                     </p>
                                 </div>
-                                <form method="post" action="../cart.php?action=add&code=<?php echo $product_array[$key][">
+                                <form method="post" action="../php/cart.php?action=add&code=<?php echo $product_array[$key][codice]?>">
                                     <div class="col-xs-12 col-md-4">
                                         <input type="text" class="product-quantity" name="quantity" value="1" size="2" />
                                     </div>

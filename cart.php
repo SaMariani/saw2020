@@ -58,6 +58,22 @@ if (!empty($_GET["action"]))
             }
             header("location: view_cart.php");
             break;
+        case "plus":
+            if (!empty($_SESSION["cart_item"]))
+            {
+                ++$_SESSION["cart_item"][$_GET["codice"]]["quantity"];
+            }
+            header("location: view_cart.php");
+            break;
+        case "minus":
+            if (!empty($_SESSION["cart_item"]))
+            {
+                if($_SESSION["cart_item"][$_GET["codice"]]["quantity"]>1){
+                    --$_SESSION["cart_item"][$_GET["codice"]]["quantity"];
+                }
+            }
+            header("location: view_cart.php");
+            break;
         case "empty":
             unset($_SESSION["cart_item"]);
             header("location: view_cart.php");

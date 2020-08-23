@@ -73,11 +73,11 @@ session_start();
             <table class="table table-hover" cellpadding="10" cellspacing="1">
                 <tbody>
                 <tr>
+                    <th style="text-align:left;" width="8%">Codice</th>
                     <th style="text-align:left;">Nome prodotto</th>
-                    <th style="text-align:left;">codice</th>
-                    <th style="text-align:right;" width="5%">Quantity</th>
-                    <th style="text-align:right;" width="10%">Unit prezzo</th>
-                    <th style="text-align:right;" width="10%">prezzo</th>
+                    <th style="text-align:right;" width="5%">Quantità</th>
+                    <th style="text-align:right;" width="10%">Prezzo</th>
+                    <th style="text-align:right;" width="10%">Parziale</th>
                     <th style="text-align:center;" width="5%">Remove</th>
                 </tr>
                 <?php
@@ -86,9 +86,13 @@ session_start();
                     $item_price = $item["quantity"] * $item["prezzo"];
                     ?>
                     <tr>
-                        <td><img src="" class="cart-item-image" /><?php echo $item["nomeprodotto"]; ?></td>
                         <td><?php echo $item["codice"]; ?></td>
-                        <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
+                        <td><img src="" class="cart-item-image" /><?php echo $item["nomeprodotto"]; ?></td>
+                        <td style="text-align:right;">
+                            <button onclick="location.href = 'cart.php?action=minus&codice=<?php echo $item["codice"]; ?>'">-</button>
+                            <?php echo $item["quantity"]; ?>
+                            <button onclick="location.href = 'cart.php?action=plus&codice=<?php echo $item["codice"]; ?>'">+</button>
+                        </td>
                         <td  style="text-align:right;"><?php echo "€ " . $item["prezzo"]; ?></td>
                         <td  style="text-align:right;"><?php echo "€ " . number_format($item_price, 2); ?></td>
                         <td style="text-align:center;"><a href="cart.php?action=remove&codice=<?php echo $item["codice"]; ?>" class="btnRemoveAction"><span class="glyphicon glyphicon-trash"></span></a></td>
@@ -100,7 +104,7 @@ session_start();
                 ?>
 
                 <tr>
-                    <td colspan="2" align="right">Total:</td>
+                    <td colspan="2" align="right">Totale:</td>
                     <td align="right"><?php echo $total_quantity; ?></td>
                     <td align="right" colspan="2"><strong><?php echo "€ " . number_format($total_price, 2); ?></strong></td>
                     <td></td>

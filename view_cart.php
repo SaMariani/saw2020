@@ -7,7 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Document</title>
 
-    <link href="../css/cartstyle.css" type="text/css" rel="stylesheet" />
+    <link href="css/cartstyle.css" type="text/css" rel="stylesheet" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -29,7 +29,7 @@ session_start();
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=../index.html>UN LOGO</a>
+            <a class="navbar-brand" href=index.html>UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,13 +37,13 @@ session_start();
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="../accedi.html"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
-                <li><a href="../under_costruction.html">Chi siamo</a></li>
-                <li><a href="../products.html">Prodotti</a></li>
-                <li><a href="../under_costruction.html">Contatti</a></li>
+                <li><a href="accedi.html"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
+                <li><a href="under_costruction.html">Chi siamo</a></li>
+                <li><a href="products.html">Prodotti</a></li>
+                <li><a href="under_costruction.html">Contatti</a></li>
 
                 <li>
-                    <form class="navbar-form navbar-left" role="search" action="../search.html" method="GET">
+                    <form class="navbar-form navbar-left" role="search" action="search.html" method="GET">
                         <div class="form-group">
                             <input type="text" class="form-control" name="search" placeholder="Search" required>
                         </div>

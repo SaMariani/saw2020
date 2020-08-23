@@ -10,13 +10,12 @@ if(!isset($_SESSION['myusersaw']))
 
 
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/codepenStyleForProducts.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -42,14 +41,14 @@ if(!isset($_SESSION['myusersaw']))
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="../under_costruction.html">Chi siamo</a></li>
-                <li><a href="../products.html">Prodotti</a></li>
-                <li><a href="../under_costruction.html">Contatti</a></li>
+                <li><a href="under_costruction.html">Chi siamo</a></li>
+                <li><a href="products.html">Prodotti</a></li>
+                <li><a href="under_costruction.html">Contatti</a></li>
 
 
 
                 <li>
-                    <form class="navbar-form navbar-left" role="search" action="../search.html" method="GET">
+                    <form class="navbar-form navbar-left" role="search" action="search.html" method="GET">
                         <div class="form-group">
                             <input type="text" class="form-control" name="search" placeholder="Search" required>
                         </div>
@@ -89,17 +88,18 @@ if(!isset($_SESSION['myusersaw']))
         <div class="col-md-6">
             <div class="login-box well">
                 <!-- <form method="POST"> -->
-                <legend>Modifica i miei dati</legend>
+                <legend>Modifica password</legend>
                 <div class="form-group">
-                    <label for="firstname">First name</label>
-                    <input value='' id="firstname" name="firstname" placeholder="First name" type="text" class="form-control" />
+                    <label for="pass">Password attuale</label>
+                    <input id="pass" value='' name="pass" placeholder="Password" type="password" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="lastname">Nome</label>
-                    <input value='' id="lastname" name="lastname" placeholder="Last name" type="text" class="form-control" />
+                    <label for="newpass">Nuova password</label>
+                    <input id="newpass" value='' name="newpass" placeholder="New password" type="password" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <p><a href="change_password.php">Modifica password</a></p>
+                    <label for="newpassconfirm">Conferma nuova password</label>
+                    <input id="newpassconfirm" value='' name="newpassconfirm" placeholder="Confirm new password" type="password" class="form-control" />
                 </div>
 
                 <div class="form-group">
@@ -122,7 +122,7 @@ if(!isset($_SESSION['myusersaw']))
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>
@@ -139,10 +139,11 @@ if(!isset($_SESSION['myusersaw']))
         }
 
         //var a = document.getElementById("email").value;
-        var b = document.getElementById("firstname").value;
-        var c = document.getElementById("lastname").value;
+        var b = document.getElementById("pass").value;
+        var c = document.getElementById("newpass").value;
+        var d = document.getElementById("newpassconfirm").value;
 
-        var infoUtente = "&firstname="+b+"&lastname="+c;
+        var infoUtente = "&pass="+b+"&newpass="+c+"&newpassconfirm="+d;
 
         xmlHttp.onreadystatechange = function () {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
@@ -152,13 +153,13 @@ if(!isset($_SESSION['myusersaw']))
                     err.innerHTML = myObj.error;
                 }
                 else{
-                    window.location.replace("show_profile.php");
+                    //window.location.replace("show_profile.php");
                     err.innerHTML = "";
                     res.innerHTML = myObj.success;
                 }
             }
         };
-        xmlHttp.open("POST", "update_profile.php", true);
+        xmlHttp.open("POST", "new_password.php", true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         xmlHttp.send(infoUtente);
     }

@@ -21,4 +21,4 @@ if(!isset($_SESSION['myusersaw']))
 <h2>
     Bienvenido: <?php echo $_SESSION['myusersaw']; ?>
 </h2>
-<a href="../php/destroySession.php">LOGOUT</a>
+<a href="../destroySession.php">LOGOUT</a>

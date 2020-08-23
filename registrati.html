@@ -47,7 +47,7 @@
                     </form>
                 </li>
 
-                <li><a href="php/view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
             </ul>
 
@@ -142,7 +142,7 @@
                 }
             }
         };
-        xmlHttp.open("POST", "php/registration.php", true);
+        xmlHttp.open("POST", "registration.php", true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         xmlHttp.send(infoUtente);
     }

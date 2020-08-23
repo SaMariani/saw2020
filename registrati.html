@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -63,34 +64,35 @@
         <div class='col-md-3'></div>
         <div class="col-md-6">
             <div class="login-box well">
-                <!-- <form method="POST"> -->
+                <form>
+                    <fieldset>
                     <legend>Registrati</legend>
-                    <div class="form-group">
-                        <label for="firstname">First name</label>
-                        <input value='' id="firstname" name="firstname" placeholder="First name" type="text" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Nome</label>
-                        <input value='' id="lastname" name="lastname" placeholder="Last name" type="text" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input value='' id="email" name="email" placeholder="E-mail" type="email" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="pass">Password</label>
-                        <input id="pass" value='' name="pass" placeholder="Password" type="password" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="confirm">Conferma password</label>
-                        <input id="confirm" value='' name="confirm" placeholder="Confirm password" type="password" class="form-control" />
-                    </div>
+                        <div class="form-group">
+                            <label for="firstname">First name</label>
+                            <input value='' id="firstname" name="firstname" placeholder="First name" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Nome</label>
+                            <input value='' id="lastname" name="lastname" placeholder="Last name" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input value='' id="email" name="email" placeholder="E-mail" type="email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Password</label>
+                            <input id="pass" value='' name="pass" placeholder="Password" type="password" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm">Conferma password</label>
+                            <input id="confirm" value='' name="confirm" placeholder="Confirm password" type="password" class="form-control" />
+                        </div>
 
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Submit" onclick="ajax_post()"/>
-                    </div>
-
-                <!-- </form> -->
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Submit" onclick="ajax_post()"/>
+                        </div>
+                    </fieldset>
+                </form>
 
                 <!-- mio div -->
                 <div class="error" id="infoE"></div>
@@ -107,10 +109,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 
-</body>
-</html>
-
-<script type="text/javascript">
+<script>
     var err = document.getElementById("infoE");
     var res = document.getElementById("infoS");
     function ajax_post() {
@@ -147,3 +146,6 @@
         xmlHttp.send(infoUtente);
     }
 </script>
+
+</body>
+</html>

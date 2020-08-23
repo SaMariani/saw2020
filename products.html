@@ -92,92 +92,89 @@
     });
 </script>
 
-</body>
-</html>
-
 <script>
     var res = document.getElementById("products");
     var listgrid = document.getElementById("list_grid");
 
     var x, template = "";
-        var xmlHttp;
-        if (window.XMLHttpRequest){
-            xmlHttp = new XMLHttpRequest();
-        }else {
-            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
-        }
+    var xmlHttp;
+    if (window.XMLHttpRequest){
+        xmlHttp = new XMLHttpRequest();
+    }else {
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
+    }
 
-        xmlHttp.onreadystatechange = function () {
-            if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
+    xmlHttp.onreadystatechange = function () {
+        if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
 
-                var myObj = JSON.parse(xmlHttp.responseText);
-                if(myObj.error!==""&&myObj.error!==undefined){
-                    res.innerHTML = "";
-                    err.innerHTML = myObj.error;
-                }
-                else{
-                    err.innerHTML = "";
-                    res.innerHTML = "";
-                    txt="";
-                    listgrid.style.visibility='visible';
-                    txt += "<table border='1'>"
-                    for (x in myObj) {
-
-                        template+=
-                            "<div class='item  col-xs-4 col-lg-4'>"+
-                            "<div class='thumbnail'>"+
-                            "<img class='group list-group-image' src='http://placehold.it/400x250/000/fff' alt='' />"+
-                            "<div class='caption'>"+
-                            "<h4 class='group inner list-group-item-heading'>"+
-                            myObj[x].nomeprodotto + "</h4>"+
-                            "<p class='group inner list-group-item-text' style='margin-top: 10px'>"+
-                            myObj[x].descrizione + "</p>"+
-                            "<div class='row' style='margin-top: 20px'>"+
-                            "<div class='col-xs-12 col-md-4'>"+
-                            "<p class='lead'>"+
-                            myObj[x].prezzo + " €</p>"+
-                            "</div>"+
-                            "<div class='col-xs-12 col-md-4'>"+
-                            "<input type='number' class='product-quantity' name='quantity' value='1' min='1' max='20' id='" + myObj[x].codice + "'/>"+
-                            "</div>"+
-                            "<div class='col-xs-12 col-md-4'>"+
-                            "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='ajax_get(\"" + myObj[x].codice + "\")'>Compra</button>"+
-                            "</div>"+
-                            "<!-- Modal -->"+
-                            "<div class='modal fade' id='myModal' role='dialog'>"+
-                            "<div class='modal-dialog modal-sm'>"+
-                            "<div class='modal-content'>"+
-                            "<div class='modal-header'>"+
-                            "<button type='button' class='close' data-dismiss='modal'>&times;</button>"+
-                            "<h4 class='modal-title'>Aggiunto al carrello!</h4>"+
-                            "</div>"+
-                            "<div class='modal-body'>"+
-                            "<p>" +
-                            //myObj[x].nomeprodotto+"</p>"+
-                            "</div>"+
-                            "<div class='modal-footer'>"+
-                            "<a href='view_cart.php'><button type='button' class='btn btn-primary'>Termina acquisto</button></a>"+
-                            "&nbsp&nbsp<button type='button' class='btn btn-default' data-dismiss='modal'>Prosegui</button>"+
-                            "</div>"+
-                            "</div>"+
-                            "</div>"+
-                            "</div>"+
-                            "</div>"+
-                            "</div>"+
-                            "</div>"+
-                            "</div>"
-                    }
-                    res.innerHTML=template;
-
-                }
+            var myObj = JSON.parse(xmlHttp.responseText);
+            if(myObj.error!==""&&myObj.error!==undefined){
+                res.innerHTML = "";
+                err.innerHTML = myObj.error;
             }
-        };
-        xmlHttp.open("GET", "allproducts.php?", true);
-        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
-        xmlHttp.send();
+            else{
+                err.innerHTML = "";
+                res.innerHTML = "";
+                txt="";
+                listgrid.style.visibility='visible';
+                txt += "<table border='1'>"
+                for (x in myObj) {
+
+                    template+=
+                        "<div class='item  col-xs-4 col-lg-4'>"+
+                        "<div class='thumbnail'>"+
+                        "<img class='group list-group-image' src='http://placehold.it/400x250/000/fff' alt='' />"+
+                        "<div class='caption'>"+
+                        "<h4 class='group inner list-group-item-heading'>"+
+                        myObj[x].nomeprodotto + "</h4>"+
+                        "<p class='group inner list-group-item-text' style='margin-top: 10px'>"+
+                        myObj[x].descrizione + "</p>"+
+                        "<div class='row' style='margin-top: 20px'>"+
+                        "<div class='col-xs-12 col-md-4'>"+
+                        "<p class='lead'>"+
+                        myObj[x].prezzo + " €</p>"+
+                        "</div>"+
+                        "<div class='col-xs-12 col-md-4'>"+
+                        "<input type='number' class='product-quantity' name='quantity' value='1' min='1' max='20' id='" + myObj[x].codice + "'/>"+
+                        "</div>"+
+                        "<div class='col-xs-12 col-md-4'>"+
+                        "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='ajax_get(\"" + myObj[x].codice + "\")'>Compra</button>"+
+                        "</div>"+
+                        "<!-- Modal -->"+
+                        "<div class='modal fade' id='myModal' role='dialog'>"+
+                        "<div class='modal-dialog modal-sm'>"+
+                        "<div class='modal-content'>"+
+                        "<div class='modal-header'>"+
+                        "<button type='button' class='close' data-dismiss='modal'>&times;</button>"+
+                        "<h4 class='modal-title'>Aggiunto al carrello!</h4>"+
+                        "</div>"+
+                        "<div class='modal-body'>"+
+                        "<p>" +
+                        //myObj[x].nomeprodotto+"</p>"+
+                        "</div>"+
+                        "<div class='modal-footer'>"+
+                        "<a href='view_cart.php'><button type='button' class='btn btn-primary'>Termina acquisto</button></a>"+
+                        "&nbsp&nbsp<button type='button' class='btn btn-default' data-dismiss='modal'>Prosegui</button>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"
+                }
+                res.innerHTML=template;
+
+            }
+        }
+    };
+    xmlHttp.open("GET", "allproducts.php?", true);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
+    xmlHttp.send();
 </script>
 
-<script type="text/javascript">
+<script>
     var err = document.getElementById("infoE");
 
     var x, template = "";
@@ -202,3 +199,6 @@
         xmlHttp.send();
     }
 </script>
+
+</body>
+</html>

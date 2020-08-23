@@ -1,11 +1,8 @@
 <?php
 
-// TODO: change credentials in the db/mysql_credentials.php file
-require_once('db/mysql_credentials.php');
 session_start();
 
-// Open DBMS Server connection
-include_once 'openDBMSconnection.php';
+require_once 'db\open_conn_DBMS.php';
 
 $state = true;
 $success="";

@@ -1,12 +1,6 @@
 <?php
 
-//vecchia versione per search.html
-
-// TODO: change credentials in the db/mysql_credentials.php file
-require_once('db/mysql_credentials.php');
-
-// Open DBMS Server connection
-include_once 'openDBMSconnection.php';
+require_once 'db\open_conn_DBMS.php';
 
 $state = true;
 $success="";

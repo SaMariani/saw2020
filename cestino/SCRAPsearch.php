@@ -61,7 +61,7 @@
     require_once('db/mysql_credentials.php');
 
     // Open DBMS Server connection
-    include_once 'openDBMSconnection.php';
+    include_once 'open_conn_DBMS.php';
 
     $state = true;
     $success = "";

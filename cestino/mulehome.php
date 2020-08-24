@@ -12,7 +12,8 @@ if(!isset($_SESSION['myusersaw']))
 <html lang="en"
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Gomme biodegradali, alta resistenza</title>
+    <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
 </head>
 <body>
 <h1>

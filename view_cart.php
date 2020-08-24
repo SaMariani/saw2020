@@ -6,7 +6,8 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Gomme biodegradali, alta resistenza</title>
+    <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
 
     <link href="css/cartstyle.css" type="text/css" rel="stylesheet" />
 
@@ -111,6 +112,7 @@ session_start();
                     </tr>
                     </tbody>
                 </table>
+                <a id="btnTerminaAcq" href="under_costruction.html">Procedi all'acquisto</a>
                 <?php
             }
             else

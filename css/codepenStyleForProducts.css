@@ -1,3 +1,26 @@
+#btnModalTermina {
+    background-color: #ffffff;
+    border: #d00000 1px solid;
+    padding: 5px 10px;
+    color: #d00000;
+    float: left;
+    text-decoration: none;
+    border-radius: 3px;
+    margin: 10px 0px;
+}
+
+#btnModalProsegui {
+    background-color: #454545;
+    border: #000000 1px solid;
+    padding: 5px 10px;
+    color: #ffffff;
+    float: right;
+    text-decoration: none;
+    border-radius: 3px;
+    margin: 10px 0px;
+}
+
+
 .glyphicon { margin-right:5px; }
 .thumbnail
 {

@@ -12,7 +12,9 @@ if(!isset($_SESSION['myusersaw']))
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Gomme biodegradali, alta resistenza</title>
+    <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/codepenStyleForProducts.css">

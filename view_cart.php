@@ -19,7 +19,7 @@ session_start();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
-<body>
+<body data-spy="scroll" data-target="#navbar-example">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -62,8 +62,7 @@ session_start();
         </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="container" style="margin-top: 100px">
-        <div id="shopping-cart" style="margin-top: 100px">
+    <div class="container" style="margin-top: 200px">
 
             <?php
             if (isset($_SESSION["cart_item"]))
@@ -125,7 +124,6 @@ session_start();
                 <?php
             }
             ?>
-        </div>
     </div>
 </body>
 </html>

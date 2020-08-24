@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once("db/dbcontroller.php");
-$db_handle = new DBController();
+require_once 'db/open_conn_DBMS.php';
 if (!empty($_GET["action"]))
 {
     switch ($_GET["action"])
@@ -9,24 +8,38 @@ if (!empty($_GET["action"]))
         case "add":
             if (!empty($_GET["quantity"]))
             {
-                $productByCode = $db_handle->runQuery("SELECT * FROM prodotti WHERE codice='" . $_GET["codice"] . "'");
+                $stmt = $con->prepare("SELECT * FROM prodotti WHERE codice = ?");
+                $stmt->bind_param("s", $_GET["codice"]);
+                $stmt->execute();
+                $resultRows = $stmt->get_result();
+                $stmt->close();
+                if ($resultRows->num_rows > 0) {
+                    $allProducts=array();
+                    $row = $resultRows->fetch_assoc();
+                        $product=[
+                            'nomeprodotto' => $row["nomeprodotto"],
+                            'codice' => $row["codice"],
+                            'quantity' => $_GET["quantity"],
+                            'prezzo' => $row["prezzo"]
+                        ];
+                        array_push($allProducts, $product);
+                }
                 $itemArray = array(
-                    $productByCode[0]["codice"] => array(
-                        'nomeprodotto' => $productByCode[0]["nomeprodotto"],
-                        'codice' => $productByCode[0]["codice"],
+                    $allProducts[0]["codice"] => array(
+                        'nomeprodotto' => $allProducts[0]["nomeprodotto"],
+                        'codice' => $allProducts[0]["codice"],
                         'quantity' => $_GET["quantity"],
-                        'prezzo' => $productByCode[0]["prezzo"]
-                        //'image' => $productByCode[0]["image"]
+                        'prezzo' => $allProducts[0]["prezzo"]
                     )
                 );
 
                 if (!empty($_SESSION["cart_item"]))
                 {
-                    if (in_array($productByCode[0]["codice"], array_keys($_SESSION["cart_item"])))
+                    if (in_array($allProducts[0]["codice"], array_keys($_SESSION["cart_item"])))
                     {
                         foreach ($_SESSION["cart_item"] as $k => $v)
                         {
-                            if ($productByCode[0]["codice"] == $k)
+                            if ($allProducts[0]["codice"] == $k)
                             {
                                 if (empty($_SESSION["cart_item"][$k]["quantity"]))
                                 {

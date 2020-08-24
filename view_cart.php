@@ -9,7 +9,9 @@ session_start();
     <title>Gomme biodegradali, alta resistenza</title>
     <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
 
-    <link href="css/cartstyle.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
+    <link rel="stylesheet" href="css/cartstyle.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -62,9 +64,7 @@ session_start();
 
     <div class="container" style="margin-top: 100px">
         <div id="shopping-cart" style="margin-top: 100px">
-            <div class="txt-heading">Shopping Cart</div>
 
-            <a id="btnEmpty" href="cart.php?action=empty">Empty Cart</a>
             <?php
             if (isset($_SESSION["cart_item"]))
             {
@@ -73,13 +73,13 @@ session_start();
                 ?>
                 <table class="table table-hover">
                     <tbody>
-                    <tr>
+                    <tr class="info">
                         <th style="text-align:left;">Codice</th>
                         <th style="text-align:left;">Nome prodotto</th>
-                        <th style="text-align:right;">Quantità</th>
-                        <th style="text-align:right;">Prezzo</th>
-                        <th style="text-align:right;">Parziale</th>
-                        <th style="text-align:center;">Remove</th>
+                        <th style="text-align:center;">Quantità</th>
+                        <th style="text-align:center;">Prezzo</th>
+                        <th style="text-align:center;">Parziale</th>
+                        <th style="text-align:center;">Rimuovi</th>
                     </tr>
                     <?php
                     foreach ($_SESSION["cart_item"] as $item)
@@ -88,15 +88,15 @@ session_start();
                         ?>
                         <tr>
                             <td><?php echo $item["codice"]; ?></td>
-                            <td><img src="http://placehold.it/400x250/000/fff" class="cart-item-image" alt="prodotto"/><?php echo $item["nomeprodotto"]; ?></td>
-                            <td style="text-align:right;">
-                                <button onclick="location.href = 'cart.php?action=minus&codice=<?php echo $item["codice"]; ?>'">-</button>
+                            <td><img src='images/<?php echo $item["codice"]; ?>.jpg' class="cart-item-image" alt="prodotto"/><?php echo $item["nomeprodotto"]; ?></td>
+                            <td style="text-align:center;">
+                                <button class="btn-qty" onclick="location.href = 'cart.php?action=minus&codice=<?php echo $item["codice"]; ?>'">-</button>
                                 <?php echo $item["quantity"]; ?>
-                                <button onclick="location.href = 'cart.php?action=plus&codice=<?php echo $item["codice"]; ?>'">+</button>
+                                <button class="btn-qty" onclick="location.href = 'cart.php?action=plus&codice=<?php echo $item["codice"]; ?>'">+</button>
                             </td>
-                            <td  style="text-align:right;"><?php echo "€ " . $item["prezzo"]; ?></td>
-                            <td  style="text-align:right;"><?php echo "€ " . number_format($item_price, 2); ?></td>
-                            <td style="text-align:center;"><a href="cart.php?action=remove&codice=<?php echo $item["codice"]; ?>" class="btnRemoveAction"><span class="glyphicon glyphicon-trash"></span></a></td>
+                            <td  style="text-align:center;"><?php echo "€ " . $item["prezzo"]; ?></td>
+                            <td  style="text-align:center;"><?php echo "€ " . number_format($item_price, 2); ?></td>
+                            <td style="text-align:center;"><a href="cart.php?action=remove&codice=<?php echo $item["codice"]; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
                         </tr>
                         <?php
                         $total_quantity += $item["quantity"];
@@ -105,20 +105,23 @@ session_start();
                     ?>
 
                     <tr>
-                        <td colspan="2">Totale:</td>
-                        <td><?php echo $total_quantity; ?></td>
-                        <td colspan="2"><strong><?php echo "€ " . number_format($total_price, 2); ?></strong></td>
+                        <td colspan="2" style="text-align:right;">Totale:</td>
+                        <td style="text-align:center;"><?php echo $total_quantity; ?></td>
+                        <td></td>
+                        <td style="text-align:center;"><strong><?php echo "€ " . number_format($total_price, 2); ?></strong></td>
                         <td></td>
                     </tr>
                     </tbody>
                 </table>
-                <a id="btnTerminaAcq" href="under_costruction.html">Procedi all'acquisto</a>
+                <div><a id="btnEmpty" href="cart.php?action=empty">Svuota carrello</a></div>
+                <div style="margin-top: 100px"><a class='btn btn-success btn-lg' href="under_costruction.html">Procedi all'acquisto</a></div>
+
                 <?php
             }
             else
             {
                 ?>
-                <div class="no-records">Your Cart is Empty</div>
+                <div class="no-records">Il carrello è vuoto</div>
                 <?php
             }
             ?>

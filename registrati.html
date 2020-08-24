@@ -135,8 +135,11 @@
         var c = document.getElementById("lastname").value;
         var d = document.getElementById("pass").value;
         var e = document.getElementById("confirm").value;
+        var t = document.getElementById("citta").value;
+        var y = document.getElementById("desc").value;
+        var u = document.getElementById("mylink").value;
 
-        var infoUtente = "email="+a+"&firstname="+b+"&lastname="+c+"&pass="+d+"&confirm="+e;
+        var infoUtente = "email="+a+"&firstname="+b+"&lastname="+c+"&pass="+d+"&confirm="+e+"&citta="+t+"&desc="+y+"&mylink="+u;
 
         xmlHttp.onreadystatechange = function () {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->

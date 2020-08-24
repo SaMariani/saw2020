@@ -61,8 +61,38 @@ if($password != $password_confirm) {
 
 // Get additional values from $_POST, but do it IN A SECURE WAY
 // If you have additional values, change functions params accordingly
+$citta = $_POST["citta"]; // replace null with $_POST and sanitization
+$citta_S = filter_var($citta, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+if(!empty($citta)) {
+    if (!$citta_S) {
+        $error .= "Città non valida<br>";
+        $state = false;
+    }
+}
+$citta = $citta_S;
 
-function insert_user($email, $first_name, $last_name, $password, $password_confirm, mysqli $db_connection) {
+$desc = $_POST["desc"]; // replace null with $_POST and sanitization
+$desc_S = filter_var($desc, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+if(!empty($desc)) {
+    if (!$desc_S) {
+        $error .= "Descrizione non valida<br>";
+        $state = false;
+    }
+}
+$desc = $desc_S;
+
+$mylink = $_POST["mylink"]; // replace null with $_POST and sanitization
+$mylinkSanitizzata = filter_var($mylink, FILTER_SANITIZE_URL);
+$mylinkValidata = filter_var($mylinkSanitizzata, FILTER_VALIDATE_URL);
+if(!empty($mylink)) {
+    if (!$mylinkValidata) {
+        $error .= "URL non valida<br>";
+        $state = false;
+    }
+}
+$mylink = $mylinkValidata;
+
+function insert_user($email, $first_name, $last_name, $password, $password_confirm, $citta, $desc, $mylink, mysqli $db_connection) {
     // TODO: check if passwords match
     if (strcmp($password, $password_confirm) != 0)
         return false;
@@ -72,8 +102,8 @@ function insert_user($email, $first_name, $last_name, $password, $password_confi
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // prepare and bind
-    $stmt = $db_connection->prepare("INSERT INTO utenti (mail, nome, cognome, password) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $email, $first_name, $last_name, $hashedPassword);
+    $stmt = $db_connection->prepare("INSERT INTO utenti (mail, nome, cognome, password, citta, descrizione, link) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssss", $email, $first_name, $last_name, $hashedPassword, $citta, $desc, $mylink);
     $result_ex = $stmt->execute();
     $stmt->close();
     // Return if the registration was successful
@@ -100,7 +130,7 @@ if(!$state) {
     sendMessage($success, $error);
     die;
 }
-$successful = insert_user($email, $first_name, $last_name, $password, $password_confirm, $con);
+$successful = insert_user($email, $first_name, $last_name, $password, $password_confirm, $citta, $desc, $mylink, $con);
 $con->close();
 
 if ($successful) {

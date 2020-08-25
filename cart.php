@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once 'db/open_conn_DBMS.php';
+
+$codice = filter_var($_GET["codice"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
 if (!empty($_GET["action"]))
 {
     switch ($_GET["action"])
@@ -9,7 +12,7 @@ if (!empty($_GET["action"]))
             if (!empty($_GET["quantity"]))
             {
                 $stmt = $con->prepare("SELECT * FROM prodotti WHERE codice = ?");
-                $stmt->bind_param("s", $_GET["codice"]);
+                $stmt->bind_param("s", $codice);
                 $stmt->execute();
                 $resultRows = $stmt->get_result();
                 $stmt->close();

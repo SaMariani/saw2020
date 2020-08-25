@@ -90,25 +90,35 @@ if(!isset($_SESSION['myusersaw']))
         <div class='col-md-3'></div>
         <div class="col-md-6">
             <div class="login-box well">
-                <!-- <form method="POST"> -->
-                <legend>Modifica i miei dati</legend>
-                <div class="form-group">
-                    <label for="firstname">First name</label>
+                <h3 style="text-align: center; margin-bottom: 30px;">I miei dati</h3>
+                <div class="form-group col-md-6">
+                    <label for="firstname">Nome</label>
                     <input value='' id="firstname" name="firstname" placeholder="First name" type="text" class="form-control" />
                 </div>
-                <div class="form-group">
-                    <label for="lastname">Nome</label>
+                <div class="form-group col-md-6">
+                    <label for="lastname">Cognome</label>
                     <input value='' id="lastname" name="lastname" placeholder="Last name" type="text" class="form-control" />
                 </div>
-                <div class="form-group">
+
+                <div class="form-group col-md-12">
+                    <label for="citta">Città</label>
+                    <input id="citta" value='' name="citta" placeholder="Optional" type="text" class="form-control" />
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="desc">Descrizione profilo</label>
+                    <input id="desc" value='' name="desc" placeholder="Optional" type="text" class="form-control" />
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="mylink">Link pagina personale</label>
+                    <input id="mylink" value='' name="mylink" placeholder="Optional" type="url" class="form-control" />
+                </div>
+                <div class="form-group col-md-12">
                     <p><a href="change_password.php">Modifica password</a></p>
                 </div>
 
-                <div class="form-group">
+                <div id="sub" class="form-group">
                     <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Submit" onclick="ajax_post()"/>
                 </div>
-
-                <!-- </form> -->
 
                 <!-- mio div -->
                 <div class="error" id="infoE"></div>
@@ -129,7 +139,7 @@ if(!isset($_SESSION['myusersaw']))
 </body>
 </html>
 
-<script type="text/javascript">
+<script>
     var err = document.getElementById("infoE");
     var res = document.getElementById("infoS");
     function ajax_post() {
@@ -143,8 +153,11 @@ if(!isset($_SESSION['myusersaw']))
         //var a = document.getElementById("email").value;
         var b = document.getElementById("firstname").value;
         var c = document.getElementById("lastname").value;
+        var t = document.getElementById("citta").value;
+        var y = document.getElementById("desc").value;
+        var u = document.getElementById("mylink").value;
 
-        var infoUtente = "&firstname="+b+"&lastname="+c;
+        var infoUtente = "&firstname="+b+"&lastname="+c+"&citta="+t+"&desc="+y+"&mylink="+u;
 
         xmlHttp.onreadystatechange = function () {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->

@@ -129,7 +129,7 @@ if(!isset($_SESSION['myusersaw']))
 </body>
 </html>
 
-<script type="text/javascript">
+<script>
     var err = document.getElementById("infoE");
     var res = document.getElementById("infoS");
     function ajax_post() {

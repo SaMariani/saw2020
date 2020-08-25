@@ -1,5 +1,4 @@
 <?php
-session_start();
 if(!isset($_SESSION['myusersaw']))
 {
     //echo "non sei loggato";
@@ -7,7 +6,6 @@ if(!isset($_SESSION['myusersaw']))
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +13,7 @@ if(!isset($_SESSION['myusersaw']))
     <title>Gomme biodegradali, alta resistenza</title>
     <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/codepenStyleForProducts.css">
 
@@ -88,26 +86,35 @@ if(!isset($_SESSION['myusersaw']))
         <div class='col-md-3'></div>
         <div class="col-md-6">
             <div class="login-box well">
-                <!-- <form method="POST"> -->
-                    <legend>I tuoi dati</legend>
-                    <div class="form-group">
+                    <h3 style="text-align: center; margin-bottom: 30px;">I miei dati</h3>
+                    <div class="form-group col-md-12">
                         <label for="email">E-mail: </label>
                         <p><?php echo $_SESSION['myusersaw']; ?> </p>
                     </div>
-                    <div class="form-group">
-                        <label for="firstname">First name: </label>
+                    <div class="form-group col-md-6">
+                        <label for="firstname">Nome: </label>
                         <p><?php echo $_SESSION['mynamesaw']; ?> </p>
                     </div>
-                    <div class="form-group">
-                        <label for="lastname">Nome: </label>
+                    <div class="form-group col-md-6">
+                        <label for="lastname">Cognome: </label>
                         <p><?php echo $_SESSION['mysurnamesaw']; ?> </p>
                     </div>
-
-                    <div class="form-group">
-                        <button type="button" class="btn btn-default btn-login-submit btn-block m-t-md" onclick="location.href = 'update.php'"; >Modifica</button>
+                    <div class="form-group col-md-12">
+                        <label for="citta">Città: </label>
+                        <p><?php echo $_SESSION['mycittasaw']; ?> </p>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="desc">Breve descrizione: </label>
+                        <p><?php echo $_SESSION['mydescsaw']; ?> </p>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="mylink">Link personale: </label>
+                        <p><?php echo $_SESSION['mylinksaw']; ?> </p>
                     </div>
 
-                <!-- </form> -->
+                    <div id="sub" class="form-group">
+                        <button type="button" class="btn btn-default btn-login-submit btn-block m-t-md" onclick="location.href = 'update.php'"; >Modifica</button>
+                    </div>
 
                 <!-- mio div -->
                 <div class="error" id="infoE"></div>
@@ -127,39 +134,3 @@ if(!isset($_SESSION['myusersaw']))
 
 </body>
 </html>
-
-<script type="text/javascript">
-    var err = document.getElementById("infoE");
-    var res = document.getElementById("infoS");
-    function ajax_post() {
-        var xmlHttp;
-        if (window.XMLHttpRequest){
-            xmlHttp = new XMLHttpRequest();
-        }else {
-            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
-        }
-
-        var a = document.getElementById("email").value;
-        var b = document.getElementById("firstname").value;
-        var c = document.getElementById("lastname").value;
-
-        var infoUtente = "email="+a+"&firstname="+b+"&lastname="+c;
-
-        xmlHttp.onreadystatechange = function () {
-            if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
-                var myObj = JSON.parse(xmlHttp.responseText);
-                if(myObj.error!==""){
-                    res.innerHTML = "";
-                    err.innerHTML = myObj.error;
-                }
-                else{
-                    err.innerHTML = "";
-                    res.innerHTML = myObj.success;
-                }
-            }
-        };
-        xmlHttp.open("POST", "registration.php", true);
-        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-        xmlHttp.send(infoUtente);
-    }
-</script>

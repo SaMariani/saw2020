@@ -109,7 +109,7 @@ if(!isset($_SESSION['myusersaw']))
 </body>
 </html>
 
-<script type="text/javascript">
+<script>
     var res = document.getElementById("products");
     var listgrid = document.getElementById("list_grid");
 

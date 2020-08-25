@@ -36,6 +36,36 @@ $last_name = $last_name_S;
 
 // Get additional values from $_POST, but do it IN A SECURE WAY
 // If you have additional values, change functions params accordingly
+$citta = $_POST["citta"]; // replace null with $_POST and sanitization
+$citta_S = filter_var($citta, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+if(!empty($citta)) {
+    if (!$citta_S) {
+        $error .= "Città non valida<br>";
+        $state = false;
+    }
+}
+$citta = $citta_S;
+
+$desc = $_POST["desc"]; // replace null with $_POST and sanitization
+$desc_S = filter_var($desc, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+if(!empty($desc)) {
+    if (!$desc_S) {
+        $error .= "Descrizione non valida<br>";
+        $state = false;
+    }
+}
+$desc = $desc_S;
+
+$mylink = $_POST["mylink"]; // replace null with $_POST and sanitization
+$mylinkSanitizzata = filter_var($mylink, FILTER_SANITIZE_URL);
+$mylinkValidata = filter_var($mylinkSanitizzata, FILTER_VALIDATE_URL);
+if(!empty($mylink)) {
+    if (!$mylinkValidata) {
+        $error .= "URL non valida<br>";
+        $state = false;
+    }
+}
+$mylink = $mylinkValidata;
 
 
 /**
@@ -59,12 +89,12 @@ if(!$state) {
 }
 
 
-function update_user($email, $first_name, $last_name, $db_connection) {
+function update_user($email, $first_name, $last_name, $citta, $desc, $mylink, $db_connection) {
     // TODO: update logic here
 
     // prepare and bind
-    $stmt = $db_connection->prepare("UPDATE utenti SET nome=?, cognome=? WHERE mail=?");
-    $stmt->bind_param("sss", $first_name, $last_name, $email);
+    $stmt = $db_connection->prepare("UPDATE utenti SET nome=?, cognome=?, citta=?, descrizione=?, link=? WHERE mail=?");
+    $stmt->bind_param("ssssss", $first_name, $last_name, $citta, $desc, $mylink, $email);
     $result_ex = $stmt->execute();
     $stmt->close();
     // Return if the registration was successful
@@ -72,7 +102,7 @@ function update_user($email, $first_name, $last_name, $db_connection) {
 }
 
 // Get user from login
-$successful = update_user($email, $first_name, $last_name, $con);
+$successful = update_user($email, $first_name, $last_name, $citta, $desc, $mylink, $con);
 
 if ($successful) {
     // Success message

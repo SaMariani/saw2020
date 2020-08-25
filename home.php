@@ -94,20 +94,23 @@ if(!isset($_SESSION['myusersaw']))
     <div class="carousel-inner" role="listbox">
         <div class="item active" style="background-image: url(https://images.unsplash.com/photo-1578844251758-2f71da64c96f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80);">
             <div class="carousel-caption animated fadeInUp">
-                <h3>Slide 1 titolo</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quas perferendis nisi rerum laudantium amet vitae. Nostrum dolore hic, perferendis dignissimos alias dolores amet. Mollitia similique omnis esse dignissimos aliquid.</p>
+                <h3>Alta durata e sicurezza</h3>
+                <p id="desc">
+                    Pneumatici interamente biodegradabili, frutto di anni di studio e test. Disponibili online per auto, gomme 4X4, pneumatici per utilitarie, gomme per moto e pneumatici per scooter e biciclette.</p>
             </div>
         </div>
         <div class="item" style="background-image: url(https://images.unsplash.com/photo-1568644310089-8fce475968a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1106&q=80);">
             <div class="carousel-caption animated fadeInUp">
-                <h3>Slide 2 titolo</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quas perferendis nisi rerum laudantium amet vitae. Nostrum dolore hic, perferendis dignissimos alias dolores amet. Mollitia similique omnis esse dignissimos aliquid.</p>
+                <h3>Tecnologie di nuova generazione</h3>
+                <p id="desc">
+                    Materiale che deriva da un processo innovativo di miscelazione, in forma liquida, di alcuni componenti del battistrada. Questo materiale è resistente e aumenta la resa chilometrica del pneumatico.</p>
             </div>
         </div>
         <div class="item" style="background-image: url(https://images.unsplash.com/photo-1559674697-7ebabb38c369?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);">
             <div class="carousel-caption animated fadeInUp">
-                <h3>Slide 3 titolo</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quas perferendis nisi rerum laudantium amet vitae. Nostrum dolore hic, perferendis dignissimos alias dolores amet. Mollitia similique omnis esse dignissimos aliquid.</p>
+                <h3>Precisione e affidabilità</h3>
+                <p id="desc">
+                    Parti del battistrada si autorigenerano con il passare dei chilometri grazie a tecniche di stampa 3D, per offrire l'aderenza necessaria per tutta la durata dei pneumatici e in tutte le condizioni. Nel corso della vita dei pneumatici appaiono dei nuovi canali per una migliore aderenza su asfalti umidi.</p>
             </div>
         </div>
     </div>

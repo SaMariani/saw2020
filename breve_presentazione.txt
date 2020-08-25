@@ -5,5 +5,6 @@ Il database presenta 2 tabelle per contenere utenti, con password codificata uti
 e i prodotti in vendita. Per l'esecuzione delle query sono stati utilizzati i preparated statement.
 Nel sito web sono state implementate la possibilità di registrarsi e fare il login e di aggiornare il profilo anche
 successivamente, modificando anche la password se necessario. Inoltre è disponibile un motore di ricerca che presa in
-input una stringa mostra i prodotti inerenti. Poi è presente la vetrina contente tutti i prodotti proposti e un
-carrello, dove eventualmente modificare le quantità oppure rimuovere i prodotti.
+input una stringa mostra i prodotti inerenti, presente anche la ricerca per fascia di prezzo. Poi è presente la
+vetrina contente tutti i prodotti proposti e un carrello, dove eventualmente modificare le quantità oppure rimuovere i
+prodotti.

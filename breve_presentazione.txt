@@ -1,4 +1,9 @@
 Samuele Mariani S4538910
 Progetto SAW a.a. 2019/2020
-La startup Pneubio si occupa della ricerca e produzione di pneumatici interamente biodegradali.
-Il database presenta 2 tabelle per contenere utenti, con password codificata utilizzando l'algoritmo PASSWORD_DEFAULT, e prodotti in vendita. Nel sito web sono state implementate la possibilità di registrarsi e fare il login e di aggiornare il profilo anche successivamente, modificando anche la password se necessario. Inoltre è disponibile un motore di ricerca che presa in input una stringa mostra i prodotti inerenti. Poi è presente la vetrina contente tutti i prodotti proposti e un carrello, dove eventualmente modificare le quantità oppure rimuovere i prodotti.
+La startup Pneubio si occupa della ricerca, produzione e vendita di pneumatici interamente biodegradali.
+Il database presenta 2 tabelle per contenere utenti, con password codificata utilizzando l'algoritmo PASSWORD_DEFAULT,
+e i prodotti in vendita. Per l'esecuzione delle query sono stati utilizzati i preparated statement.
+Nel sito web sono state implementate la possibilità di registrarsi e fare il login e di aggiornare il profilo anche
+successivamente, modificando anche la password se necessario. Inoltre è disponibile un motore di ricerca che presa in
+input una stringa mostra i prodotti inerenti. Poi è presente la vetrina contente tutti i prodotti proposti e un
+carrello, dove eventualmente modificare le quantità oppure rimuovere i prodotti.

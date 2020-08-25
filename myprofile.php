@@ -88,32 +88,32 @@ if(!isset($_SESSION['myusersaw']))
             <div class="login-box well">
                     <h3 style="text-align: center; margin-bottom: 30px;">I miei dati</h3>
                     <div class="form-group col-md-12">
-                        <label for="email">E-mail: </label>
+                        <label>E-mail: </label>
                         <p><?php echo $_SESSION['myusersaw']; ?> </p>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="firstname">Nome: </label>
+                        <label>Nome: </label>
                         <p><?php echo $_SESSION['mynamesaw']; ?> </p>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="lastname">Cognome: </label>
+                        <label>Cognome: </label>
                         <p><?php echo $_SESSION['mysurnamesaw']; ?> </p>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="citta">Città: </label>
+                        <label>Città: </label>
                         <p><?php echo $_SESSION['mycittasaw']; ?> </p>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="desc">Breve descrizione: </label>
+                        <label>Breve descrizione: </label>
                         <p><?php echo $_SESSION['mydescsaw']; ?> </p>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="mylink">Link personale: </label>
+                        <label>Link personale: </label>
                         <p><?php echo $_SESSION['mylinksaw']; ?> </p>
                     </div>
 
                     <div id="sub" class="form-group">
-                        <button type="button" class="btn btn-default btn-login-submit btn-block m-t-md" onclick="location.href = 'update.php'"; >Modifica</button>
+                        <button type="button" class="btn btn-default btn-login-submit btn-block m-t-md" onclick="location.href = 'update.php'">Modifica</button>
                     </div>
 
                 <!-- mio div -->

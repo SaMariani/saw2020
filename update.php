@@ -136,9 +136,6 @@ if(!isset($_SESSION['myusersaw']))
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 
-</body>
-</html>
-
 <script>
     var err = document.getElementById("infoE");
     var res = document.getElementById("infoS");
@@ -178,3 +175,6 @@ if(!isset($_SESSION['myusersaw']))
         xmlHttp.send(infoUtente);
     }
 </script>
+
+</body>
+</html>

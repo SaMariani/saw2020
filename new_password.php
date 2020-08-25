@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+if(!isset($_SESSION['mytentativisaw']))
+{
+    $_SESSION['mytentativisaw']=0;
+}
 
 // Open DBMS Server connection
 require_once 'db/open_conn_DBMS.php';
@@ -78,7 +82,12 @@ function check_old_password($email, $oldpass, $db_connection)
 
 if(!check_old_password($email, $password, $con)){
     $con->close();
-    $error .= "Password errata!";
+    if ($_SESSION['mytentativisaw'] > 4) {
+        $error = "Troppi tentativi!";
+    } else {
+        ++$_SESSION['mytentativisaw'];
+        $error = "Password errata!";
+    }
     sendMessage($success, $error);
     die;
 }

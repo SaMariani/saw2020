@@ -10,6 +10,7 @@ if(!isset($_SESSION['myusersaw']))
 
 
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Gomme biodegradali, alta resistenza</title>
@@ -89,8 +90,7 @@ if(!isset($_SESSION['myusersaw']))
         <div class='col-md-3'></div>
         <div class="col-md-6">
             <div class="login-box well">
-                <!-- <form method="POST"> -->
-                <legend>Modifica password</legend>
+                <h3 style="text-align: center; margin-bottom: 30px;">Modifica password</h3>
                 <div class="form-group">
                     <label for="pass">Password attuale</label>
                     <input id="pass" value='' name="pass" placeholder="Password" type="password" class="form-control" />
@@ -108,8 +108,6 @@ if(!isset($_SESSION['myusersaw']))
                     <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Submit" onclick="ajax_post()"/>
                 </div>
 
-                <!-- </form> -->
-
                 <!-- mio div -->
                 <div class="error" id="infoE"></div>
                 <div class="success" id="infoS"></div>
@@ -125,9 +123,6 @@ if(!isset($_SESSION['myusersaw']))
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-
-</body>
-</html>
 
 <script>
     var err = document.getElementById("infoE");
@@ -152,6 +147,9 @@ if(!isset($_SESSION['myusersaw']))
                 var myObj = JSON.parse(xmlHttp.responseText);
                 if(myObj.error!==""){
                     res.innerHTML = "";
+                    if (myObj.error==="Troppi tentativi!"){
+                        window.location.replace("destroySession.php");
+                    }
                     err.innerHTML = myObj.error;
                 }
                 else{
@@ -166,3 +164,6 @@ if(!isset($_SESSION['myusersaw']))
         xmlHttp.send(infoUtente);
     }
 </script>
+
+</body>
+</html>

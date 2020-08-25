@@ -16,6 +16,8 @@ html,body{
 	h2{font-size: 38px;}
 	h3{font-size: 28px;}
 
+    hr{height:1px;color:red;background-color:red}
+
 .success{
     color: #3e8f3e;
     background-color: rgb(92, 184, 92);

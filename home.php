@@ -17,7 +17,7 @@ if(!isset($_SESSION['myusersaw']))
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/codepenStyleForProducts.css">
+    <link rel="stylesheet" href="css/styleForProducts.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -68,8 +68,7 @@ if(!isset($_SESSION['myusersaw']))
                     <ul class="dropdown-menu">
                         <li><a href="show_profile.php">Visualizza profilo</a></li>
                         <li><a href="update.php">Modifica profilo</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
+
                     </ul>
                 </li>
 

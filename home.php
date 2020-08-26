@@ -95,21 +95,21 @@ if(!isset($_SESSION['myusersaw']))
         <div class="item active" style="background-image: url(https://images.unsplash.com/photo-1578844251758-2f71da64c96f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80);">
             <div class="carousel-caption animated fadeInUp">
                 <h3>Alta durata e sicurezza</h3>
-                <p id="desc_index">
+                <p class="desc_index">
                     Pneumatici interamente biodegradabili, frutto di anni di studio e test. Disponibili online per auto, gomme 4X4, pneumatici per utilitarie, gomme per moto e pneumatici per scooter e biciclette.</p>
             </div>
         </div>
         <div class="item" style="background-image: url(https://images.unsplash.com/photo-1568644310089-8fce475968a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1106&q=80);">
             <div class="carousel-caption animated fadeInUp">
                 <h3>Tecnologie di nuova generazione</h3>
-                <p id="desc_index">
+                <p class="desc_index">
                     Materiale che deriva da un processo innovativo di miscelazione, in forma liquida, di alcuni componenti del battistrada. Questo materiale è resistente e aumenta la resa chilometrica del pneumatico.</p>
             </div>
         </div>
         <div class="item" style="background-image: url(https://images.unsplash.com/photo-1559674697-7ebabb38c369?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);">
             <div class="carousel-caption animated fadeInUp">
                 <h3>Precisione e affidabilità</h3>
-                <p id="desc_index">
+                <p class="desc_index">
                     Parti del battistrada si autorigenerano con il passare dei chilometri grazie a tecniche di stampa 3D, per offrire l'aderenza necessaria per tutta la durata dei pneumatici e in tutte le condizioni. Nel corso della vita dei pneumatici appaiono dei nuovi canali per una migliore aderenza su asfalti umidi.</p>
             </div>
         </div>

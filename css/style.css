@@ -2,7 +2,9 @@ html,body{
     height:100%;
 }
 
-.modal-open {overflow: auto! Important; }
+body {
+    padding-right: 0px !important;
+}
 
 .carousel,.item,.active{
     height:100%;

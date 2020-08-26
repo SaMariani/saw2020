@@ -32,11 +32,7 @@ session_start();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href=index.html>
-                    <object type="image/svg+xml" id="logo" data="images/pneubio.svg">
-                        <div>SVG logo</div>
-                    </object>
-                </a>
+                <a class="navbar-brand" href=index.html><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

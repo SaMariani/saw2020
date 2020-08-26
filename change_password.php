@@ -36,7 +36,7 @@ if(!isset($_SESSION['myusersaw']))
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home.php">UN LOGO</a>
+            <a class="navbar-brand" href="home.php"><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

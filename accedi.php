@@ -1,11 +1,21 @@
+<?php
+session_start();
+if(isset($_SESSION['myusersaw']))
+{
+    //echo "non sei loggato";
+    header("Location:destroySession.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Gomme biodegradali, alta resistenza</title>
+	<meta charset="UTF-8">
+	<title>Gomme biodegradabili, alta resistenza</title>
     <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
 
-    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleForProducts.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +37,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=index.html><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
+            <a class="navbar-brand" href=index.php><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,13 +45,22 @@
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="accedi.html"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
-                <li><a href="under_costruction.html">Chi siamo</a></li>
-                <li><a href="products.html">Prodotti</a></li>
-                <li><a href="under_costruction.html">Contatti</a></li>
+                <?php
+                if(!isset($_SESSION['myusersaw']))
+                {
+                    ?>
+                    <li><a href="accedi.php"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
+                    <?php
+                }
+                ?>
+                <li><a href="under_construction.php">Chi siamo</a></li>
+                <li><a href="products.php">Prodotti</a></li>
+                <li><a href="under_construction.php">Contatti</a></li>
+
+
 
                 <li>
-                    <form class="navbar-form navbar-left" role="search" action="search.html" method="GET">
+                    <form class="navbar-form navbar-left" role="search" action="print_search.php" method="GET">
                         <div class="form-group">
                             <input type="text" class="form-control" name="search" placeholder="Search" required>
                         </div>
@@ -51,12 +70,32 @@
 
                 <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
+                <?php
+                if(isset($_SESSION['myusersaw']))
+                {
+                    ?>
+                    <li class="dropdown btn-info">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Ciao <?php echo $_SESSION['myusersaw']; ?>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="show_profile.php">Visualizza profilo</a></li>
+                            <li><a href="update.php">Modifica profilo</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li><a href="destroySession.php">LOGOUT</a></li>
+                    <?php
+                }
+                ?>
+
             </ul>
 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
 
 
 <div class="container">
@@ -65,48 +104,28 @@
         <div class='col-md-3'></div>
         <div class="col-md-6">
             <div class="login-box well">
-                <h2 style="text-align: center; margin-bottom: 30px;">Registrati</h2>
-                <div class="form-group col-md-6">
-                            <label for="firstname">Nome</label>
-                            <input value='' id="firstname" name="firstname" placeholder="First name" type="text" class="form-control" />
-                        </div>
-                <div class="form-group col-md-6">
-                            <label for="lastname">Cognome</label>
-                            <input value='' id="lastname" name="lastname" placeholder="Last name" type="text" class="form-control" />
-                        </div>
-                <div class="form-group col-md-12">
+                        <h2 style="text-align: center; margin-bottom: 30px;">Accedi</h2>
+                        <div class="form-group">
                             <label for="email">E-mail</label>
                             <input value='' id="email" name="email" placeholder="E-mail" type="email" class="form-control" />
                         </div>
-                <div class="form-group col-md-6">
+                        <div class="form-group">
                             <label for="pass">Password</label>
                             <input id="pass" value='' name="pass" placeholder="Password" type="password" class="form-control" />
                         </div>
-                <div class="form-group col-md-6">
-                            <label for="confirm">Conferma password</label>
-                            <input id="confirm" value='' name="confirm" placeholder="Confirm password" type="password" class="form-control" />
-                        </div>
-                <div class="form-group col-md-12">
-                            <label for="citta">Città</label>
-                            <input id="citta" value='' name="citta" placeholder="Optional" type="text" class="form-control" />
-                        </div>
-                <div class="form-group col-md-12">
-                            <label for="desc">Descrizione profilo</label>
-                            <input id="desc" value='' name="desc" placeholder="Optional" type="text" class="form-control" />
-                        </div>
-                <div class="form-group col-md-12">
-                            <label for="mylink">Link pagina personale</label>
-                            <input id="mylink" value='' name="mylink" placeholder="Optional" type="url" class="form-control" />
-                        </div>
 
-                        <div id="sub" class="form-group">
-                            <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Submit" onclick="ajax_post()"/>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Submit" onclick="ajax_post()" />
+                        </div>
+                        <span class='text-center'><a href="under_construction.php" class="text-sm">Forgot Password?</a></span>
+                        <div class="form-group">
+                            <p class="text-center m-t-xs text-sm">Non hai un account?</p>
+                            <a href="registrati.php" class="btn btn-default btn-block m-t-md">Registrati</a>
                         </div>
 
                 <!-- mio div -->
                 <div class="error" id="infoE"></div>
                 <div class="success" id="infoS"></div>
-
             </div>
         </div>
         <div class='col-md-3'></div>
@@ -131,15 +150,9 @@
         }
 
         var a = document.getElementById("email").value;
-        var b = document.getElementById("firstname").value;
-        var c = document.getElementById("lastname").value;
         var d = document.getElementById("pass").value;
-        var e = document.getElementById("confirm").value;
-        var t = document.getElementById("citta").value;
-        var y = document.getElementById("desc").value;
-        var u = document.getElementById("mylink").value;
 
-        var infoUtente = "email="+a+"&firstname="+b+"&lastname="+c+"&pass="+d+"&confirm="+e+"&citta="+t+"&desc="+y+"&mylink="+u;
+        var infoUtente = "email="+a+"&pass="+d;
 
         xmlHttp.onreadystatechange = function () {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
@@ -149,12 +162,13 @@
                     err.innerHTML = myObj.error;
                 }
                 else{
+                    window.location.replace("index.php");
                     err.innerHTML = "";
                     res.innerHTML = myObj.success;
                 }
             }
         };
-        xmlHttp.open("POST", "registration.php", true);
+        xmlHttp.open("POST", "login.php", true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         xmlHttp.send(infoUtente);
     }

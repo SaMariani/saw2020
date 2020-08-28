@@ -11,7 +11,7 @@ $error="";
 session_start();
 if (!isset($_SESSION['myusersaw'])) {//se non è loggato torna al form e lo script termina
     //echo "non sei loggato";
-    header("Location:accedi.html");
+    header("Location:accedi.php");
     exit;
 }
 $email=$_SESSION['myusersaw'];

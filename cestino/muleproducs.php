@@ -12,7 +12,7 @@ if(!isset($_SESSION['myusersaw']))
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gomme biodegradali, alta resistenza</title>
+    <title>Gomme biodegradabili, alta resistenza</title>
     <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -35,7 +35,7 @@ if(!isset($_SESSION['myusersaw']))
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../home.php">UN LOGO</a>
+            <a class="navbar-brand" href="../index.php">UN LOGO</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,11 +44,11 @@ if(!isset($_SESSION['myusersaw']))
             <ul class="nav navbar-nav navbar-right">
 
                 <li><a href="../under_costruction.html">Chi siamo</a></li>
-                <li><a href="../products.html">Prodotti</a></li>
+                <li><a href="../products.php">Prodotti</a></li>
                 <li><a href="../under_costruction.html">Contatti</a></li>
 
                 <li>
-                    <form class="navbar-form navbar-left" role="search" action="../search.html" method="GET">
+                    <form class="navbar-form navbar-left" role="search" action="../print_search.php" method="GET">
                         <div class="form-group">
                             <input type="text" class="form-control" name="search" placeholder="Search" required>
                         </div>

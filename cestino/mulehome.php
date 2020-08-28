@@ -12,7 +12,7 @@ if(!isset($_SESSION['myusersaw']))
 <html lang="en"
 <head>
     <meta charset="UTF-8">
-    <title>Gomme biodegradali, alta resistenza</title>
+    <title>Gomme biodegradabili, alta resistenza</title>
     <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
 </head>
 <body>

@@ -6,7 +6,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gomme biodegradali, alta resistenza</title>
+    <title>Gomme biodegradabili, alta resistenza</title>
     <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
 
     <link rel="stylesheet" href="css/style.css">
@@ -32,31 +32,61 @@ session_start();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href=index.html><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
+                <a class="navbar-brand" href=index.php><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar-example">
+        <div class="collapse navbar-collapse" id="navbar-example">
 
-                <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
 
-                    <li><a href="accedi.html"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
-                    <li><a href="under_costruction.html">Chi siamo</a></li>
-                    <li><a href="products.html">Prodotti</a></li>
-                    <li><a href="under_costruction.html">Contatti</a></li>
+                <?php
+                if(!isset($_SESSION['myusersaw']))
+                {
+                    ?>
+                    <li><a href="accedi.php"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
+                    <?php
+                }
+                ?>
+                <li><a href="under_construction.php">Chi siamo</a></li>
+                <li><a href="products.php">Prodotti</a></li>
+                <li><a href="under_construction.php">Contatti</a></li>
 
-                    <li>
-                        <form class="navbar-form navbar-left" role="search" action="search.html" method="GET">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="search" placeholder="Search" required>
-                            </div>
-                            <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
-                        </form>
+
+
+                <li>
+                    <form class="navbar-form navbar-left" role="search" action="print_search.php" method="GET">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search" required>
+                        </div>
+                        <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
+                    </form>
+                </li>
+
+                <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+
+                <?php
+                if(isset($_SESSION['myusersaw']))
+                {
+                    ?>
+                    <li class="dropdown btn-info">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Ciao <?php echo $_SESSION['myusersaw']; ?>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="show_profile.php">Visualizza profilo</a></li>
+                            <li><a href="update.php">Modifica profilo</a></li>
+
+                        </ul>
                     </li>
 
-                    <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="destroySession.php">LOGOUT</a></li>
+                    <?php
+                }
+                ?>
 
-                </ul>
+            </ul>
 
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -113,7 +143,7 @@ session_start();
                     </tbody>
                 </table>
                 <div><a id="btnEmpty" href="cart.php?action=empty">Svuota carrello</a></div>
-                <div style="margin-top: 100px"><a class='btn btn-success btn-lg' href="under_costruction.html">Procedi all'acquisto</a></div>
+                <div style="margin-top: 100px"><a class='btn btn-success btn-lg' href="under_construction.php">Procedi all'acquisto</a></div>
 
                 <?php
             }

@@ -1,18 +1,12 @@
 <?php
 session_start();
-if(!isset($_SESSION['myusersaw']))
-{
-    //echo "non sei loggato";
-    header("Location:accedi.html");
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gomme biodegradali, alta resistenza</title>
+    <title>Gomme biodegradabili, alta resistenza</title>
     <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -35,7 +29,7 @@ if(!isset($_SESSION['myusersaw']))
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home.php"><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
+            <a class="navbar-brand" href="index.php"><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,14 +37,22 @@ if(!isset($_SESSION['myusersaw']))
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="under_costruction.html">Chi siamo</a></li>
-                <li><a href="products.html">Prodotti</a></li>
-                <li><a href="under_costruction.html">Contatti</a></li>
+                <?php
+                if(!isset($_SESSION['myusersaw']))
+                {
+                ?>
+                <li><a href="accedi.php"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
+                    <?php
+                }
+                ?>
+                <li><a href="under_construction.php">Chi siamo</a></li>
+                <li><a href="products.php">Prodotti</a></li>
+                <li><a href="under_construction.php">Contatti</a></li>
 
 
 
                 <li>
-                    <form class="navbar-form navbar-left" role="search" action="search.html" method="GET">
+                    <form class="navbar-form navbar-left" role="search" action="print_search.php" method="GET">
                         <div class="form-group">
                             <input type="text" class="form-control" name="search" placeholder="Search" required>
                         </div>
@@ -60,6 +62,10 @@ if(!isset($_SESSION['myusersaw']))
 
                 <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
+                <?php
+                    if(isset($_SESSION['myusersaw']))
+                    {
+                        ?>
                 <li class="dropdown btn-info">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Ciao <?php echo $_SESSION['myusersaw']; ?>
@@ -73,6 +79,9 @@ if(!isset($_SESSION['myusersaw']))
                 </li>
 
                 <li><a href="destroySession.php">LOGOUT</a></li>
+                <?php
+                    }
+                ?>
 
             </ul>
 

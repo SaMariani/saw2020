@@ -1,13 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['myusersaw']))
-{
-    //echo "non sei loggato";
-    header("Location:accedi.php");
-    exit;
-}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +9,13 @@ if(!isset($_SESSION['myusersaw']))
     <title>Gomme biodegradabili, alta resistenza</title>
     <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleForProducts.css">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 </head>
 <body data-spy="scroll" data-target="#navbar-example">
@@ -36,7 +31,7 @@ if(!isset($_SESSION['myusersaw']))
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
+            <a class="navbar-brand" href=index.php><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,6 +39,14 @@ if(!isset($_SESSION['myusersaw']))
 
             <ul class="nav navbar-nav navbar-right">
 
+                <?php
+                if(!isset($_SESSION['myusersaw']))
+                {
+                    ?>
+                    <li><a href="accedi.php"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
+                    <?php
+                }
+                ?>
                 <li><a href="under_construction.php">Chi siamo</a></li>
                 <li><a href="products.php">Prodotti</a></li>
                 <li><a href="under_construction.php">Contatti</a></li>
@@ -61,19 +64,26 @@ if(!isset($_SESSION['myusersaw']))
 
                 <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
-                <li class="dropdown btn-info">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Ciao <?php echo $_SESSION['myusersaw']; ?>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="show_profile.php">Visualizza profilo</a></li>
-                        <li><a href="update.php">Modifica profilo</a></li>
+                <?php
+                if(isset($_SESSION['myusersaw']))
+                {
+                    ?>
+                    <li class="dropdown btn-info">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Ciao <?php echo $_SESSION['myusersaw']; ?>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="show_profile.php">Visualizza profilo</a></li>
+                            <li><a href="update.php">Modifica profilo</a></li>
 
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
 
-                <li><a href="destroySession.php">LOGOUT</a></li>
+                    <li><a href="destroySession.php">LOGOUT</a></li>
+                    <?php
+                }
+                ?>
 
             </ul>
 
@@ -89,35 +99,43 @@ if(!isset($_SESSION['myusersaw']))
         <div class='col-md-3'></div>
         <div class="col-md-6">
             <div class="login-box well">
-                <h3 style="text-align: center; margin-bottom: 30px;">I miei dati</h3>
+                <h2 style="text-align: center; margin-bottom: 30px;">Registrati</h2>
                 <div class="form-group col-md-6">
-                    <label for="firstname">Nome</label>
-                    <input value='' id="firstname" name="firstname" placeholder="First name" type="text" class="form-control" />
-                </div>
+                            <label for="firstname">Nome</label>
+                            <input value='' id="firstname" name="firstname" placeholder="First name" type="text" class="form-control" />
+                        </div>
                 <div class="form-group col-md-6">
-                    <label for="lastname">Cognome</label>
-                    <input value='' id="lastname" name="lastname" placeholder="Last name" type="text" class="form-control" />
-                </div>
+                            <label for="lastname">Cognome</label>
+                            <input value='' id="lastname" name="lastname" placeholder="Last name" type="text" class="form-control" />
+                        </div>
+                <div class="form-group col-md-12">
+                            <label for="email">E-mail</label>
+                            <input value='' id="email" name="email" placeholder="E-mail" type="email" class="form-control" />
+                        </div>
+                <div class="form-group col-md-6">
+                            <label for="pass">Password</label>
+                            <input id="pass" value='' name="pass" placeholder="Password" type="password" class="form-control" />
+                        </div>
+                <div class="form-group col-md-6">
+                            <label for="confirm">Conferma password</label>
+                            <input id="confirm" value='' name="confirm" placeholder="Confirm password" type="password" class="form-control" />
+                        </div>
+                <div class="form-group col-md-12">
+                            <label for="citta">Città</label>
+                            <input id="citta" value='' name="citta" placeholder="Optional" type="text" class="form-control" />
+                        </div>
+                <div class="form-group col-md-12">
+                            <label for="desc">Descrizione profilo</label>
+                            <input id="desc" value='' name="desc" placeholder="Optional" type="text" class="form-control" />
+                        </div>
+                <div class="form-group col-md-12">
+                            <label for="mylink">Link pagina personale</label>
+                            <input id="mylink" value='' name="mylink" placeholder="Optional" type="url" class="form-control" />
+                        </div>
 
-                <div class="form-group col-md-12">
-                    <label for="citta">Città</label>
-                    <input id="citta" value='' name="citta" placeholder="Optional" type="text" class="form-control" />
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="desc">Descrizione profilo</label>
-                    <input id="desc" value='' name="desc" placeholder="Optional" type="text" class="form-control" />
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="mylink">Link pagina personale</label>
-                    <input id="mylink" value='' name="mylink" placeholder="Optional" type="url" class="form-control" />
-                </div>
-                <div class="form-group col-md-12">
-                    <p><a href="change_password.php">Modifica password</a></p>
-                </div>
-
-                <div id="sub" class="form-group">
-                    <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Submit" onclick="ajax_post()"/>
-                </div>
+                        <div id="sub" class="form-group">
+                            <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Submit" onclick="ajax_post()"/>
+                        </div>
 
                 <!-- mio div -->
                 <div class="error" id="infoE"></div>
@@ -146,14 +164,16 @@ if(!isset($_SESSION['myusersaw']))
             xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
         }
 
-        //var a = document.getElementById("email").value;
+        var a = document.getElementById("email").value;
         var b = document.getElementById("firstname").value;
         var c = document.getElementById("lastname").value;
+        var d = document.getElementById("pass").value;
+        var e = document.getElementById("confirm").value;
         var t = document.getElementById("citta").value;
         var y = document.getElementById("desc").value;
         var u = document.getElementById("mylink").value;
 
-        var infoUtente = "&firstname="+b+"&lastname="+c+"&citta="+t+"&desc="+y+"&mylink="+u;
+        var infoUtente = "email="+a+"&firstname="+b+"&lastname="+c+"&pass="+d+"&confirm="+e+"&citta="+t+"&desc="+y+"&mylink="+u;
 
         xmlHttp.onreadystatechange = function () {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
@@ -163,13 +183,12 @@ if(!isset($_SESSION['myusersaw']))
                     err.innerHTML = myObj.error;
                 }
                 else{
-                    window.location.replace("show_profile.php");
                     err.innerHTML = "";
                     res.innerHTML = myObj.success;
                 }
             }
         };
-        xmlHttp.open("POST", "update_profile.php", true);
+        xmlHttp.open("POST", "registration.php", true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         xmlHttp.send(infoUtente);
     }

@@ -1,0 +1,325 @@
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gomme biodegradabili, alta resistenza</title>
+
+    <link rel="icon" type="image/png" href="images/tire-pngrepo-com.png">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleForProducts.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</head>
+<body data-spy="scroll" data-target="#navbar-example">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-example" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href=index.php><img src="images/pneubio.png" alt="logo" style="max-height: 34px"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-example">
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <?php
+                if(!isset($_SESSION['myusersaw']))
+                {
+                    ?>
+                    <li><a href="accedi.php"><span class="glyphicon glyphicon-user"></span> Accedi</a></li>
+                    <?php
+                }
+                ?>
+                <li><a href="under_construction.php">Chi siamo</a></li>
+                <li><a href="products.php">Prodotti</a></li>
+                <li><a href="under_construction.php">Contatti</a></li>
+
+                <li>
+                    <form class="navbar-form navbar-left" role="search" action="print_search.php" method="GET">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search" required>
+                        </div>
+                        <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
+                    </form>
+                </li>
+
+                <li><a href="view_cart.php">Carrello <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+
+                <?php
+                if(isset($_SESSION['myusersaw']))
+                {
+                    ?>
+                    <li class="dropdown btn-info">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Ciao <?php echo $_SESSION['myusersaw']; ?>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="show_profile.php">Visualizza profilo</a></li>
+                            <li><a href="update.php">Modifica profilo</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li><a href="destroySession.php">LOGOUT</a></li>
+                    <?php
+                }
+                ?>
+            </ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+<div class="container" style="margin-top: 100px">
+
+
+    <div id="list_grid" class="well well-sm" style="visibility: hidden">
+        <div class="btn-group">
+            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                    class="glyphicon glyphicon-th"></span>Grid</a>
+        </div>
+        <span style="float: right">
+            <span>Prezzo min: </span>
+            <input type='number' class='product-quantity' id="search_min" name="search_min" value='1' min='1' max='1000'>
+            <span>Prezzo max: </span>
+            <input type='number' class='product-quantity' id="search_max" name="search_max" value='100' min='1' max='1000'>
+            <span><button type="submit" class="btn btn-info glyphicon glyphicon-search" onclick="ajax_price()"></button></span>
+        </span>
+    </div>
+
+    <div class="error" id="infoE"></div>
+
+    <div id='products' class='row list-group'>
+
+    </div>
+
+</div><!-- / container -->
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+        $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+    });
+</script>
+
+<script>
+    var res = document.getElementById("products");
+    var listgrid = document.getElementById("list_grid");
+
+    var x, template = "";
+    var xmlHttp;
+    if (window.XMLHttpRequest){
+        xmlHttp = new XMLHttpRequest();
+    }else {
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
+    }
+
+    xmlHttp.onreadystatechange = function () {
+        if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
+
+            var myObj = JSON.parse(xmlHttp.responseText);
+            if(myObj.error!==""&&myObj.error!==undefined){
+                res.innerHTML = "";
+                err.innerHTML = myObj.error;
+            }
+            else{
+                err.innerHTML = "";
+                res.innerHTML = "";
+                txt="";
+                listgrid.style.visibility='visible';
+                txt += "<table border='1'>"
+                for (x in myObj) {
+
+                    template+=
+                        "<div class='item  col-xs-4 col-lg-4'>"+
+                        "<div class='thumbnail'>"+
+                        "<img class='group list-group-image' style='max-height: 250px' src='images/"+myObj[x].codice+".jpg' alt='prodotto' />"+
+                        "<div class='caption'>"+
+                        "<h4 class='group inner list-group-item-heading'>"+
+                        myObj[x].nomeprodotto + "</h4>"+
+                        "<p class='group inner list-group-item-text' style='margin-top: 10px'>"+
+                        myObj[x].descrizione + "</p>"+
+                        "<div class='row' style='margin-top: 20px'>"+
+                        "<div class='col-xs-12 col-md-4'>"+
+                        "<p class='lead'>"+
+                        myObj[x].prezzo + " €</p>"+
+                        "</div>"+
+                        "<div class='col-xs-12 col-md-4'>"+
+                        "<input type='number' class='product-quantity' name='quantity' value='1' min='1' max='20' id='" + myObj[x].codice + "'/>"+
+                        "</div>"+
+                        "<div class='col-xs-12 col-md-4'>"+
+                        "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal" + myObj[x].codice + "' onclick='ajax_get(\"" + myObj[x].codice + "\")'>Compra</button>"+
+                        "</div>"+
+                        "<!-- Modal -->"+
+                        "<div class='modal fade' id='myModal" + myObj[x].codice + "' role='dialog'>"+
+                        "<div class='modal-dialog modal-sm'>"+
+                        "<div class='modal-content'>"+
+                        "<div class='modal-header'>"+
+                        "<button type='button' class='close' data-dismiss='modal'>&times;</button>"+
+                        "<h4 class='modal-title'>Aggiunto al carrello!</h4>"+
+                        "</div>"+
+                        "<div class='modal-body'>"+
+                        "</div>"+
+                        "<div class='modal-footer'>"+
+                        "<a href='view_cart.php' class='btn btn-success'>Termina acquisto</a>"+
+                        "<button type='button' class='btn btn-default' data-dismiss='modal'>Prosegui</button>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>"
+                }
+                res.innerHTML=template;
+            }
+        }
+    };
+    xmlHttp.open("GET", "allproducts.php?", true);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
+    xmlHttp.send();
+</script>
+
+<script>
+    var res = document.getElementById("products");
+    var listgrid = document.getElementById("list_grid");
+    function ajax_price() {
+        var xmlHttp;
+        if (window.XMLHttpRequest){
+            xmlHttp = new XMLHttpRequest();
+        }else {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
+        }
+
+        var min = document.getElementById("search_min").value;
+        var max = document.getElementById("search_max").value;
+        var info = "search_min="+min+"&search_max="+max;
+
+        xmlHttp.onreadystatechange = function () {
+            if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
+
+                var myObj = JSON.parse(xmlHttp.responseText);
+                if(myObj.error!==""&&myObj.error!==undefined){
+                    res.innerHTML = "";
+                    err.innerHTML = myObj.error;
+                }
+                else{
+                    err.innerHTML = "";
+                    res.innerHTML = "";
+                    txt="";
+                    template="";
+                    listgrid.style.visibility='visible';
+                    txt += "<table border='1'>"
+                    for (x in myObj) {
+
+                        template+=
+                            "<div class='item  col-xs-4 col-lg-4'>"+
+                            "<div class='thumbnail'>"+
+                            "<img class='group list-group-image' style='max-height: 250px' src='images/"+myObj[x].codice+".jpg' alt='prodotto' />"+
+                            "<div class='caption'>"+
+                            "<h4 class='group inner list-group-item-heading'>"+
+                            myObj[x].nomeprodotto + "</h4>"+
+                            "<p class='group inner list-group-item-text' style='margin-top: 10px'>"+
+                            myObj[x].descrizione + "</p>"+
+                            "<div class='row' style='margin-top: 20px'>"+
+                            "<div class='col-xs-12 col-md-4'>"+
+                            "<p class='lead'>"+
+                            myObj[x].prezzo + " €</p>"+
+                            "</div>"+
+                            "<div class='col-xs-12 col-md-4'>"+
+                            "<input type='number' class='product-quantity' name='quantity' value='1' min='1' max='20' id='" + myObj[x].codice + "'/>"+
+                            "</div>"+
+                            "<div class='col-xs-12 col-md-4'>"+
+                            "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal" + myObj[x].codice + "' onclick='ajax_get(\"" + myObj[x].codice + "\")'>Compra</button>"+
+                            "</div>"+
+                            "<!-- Modal -->"+
+                            "<div class='modal fade' id='myModal" + myObj[x].codice + "' role='dialog'>"+
+                            "<div class='modal-dialog modal-sm'>"+
+                            "<div class='modal-content'>"+
+                            "<div class='modal-header'>"+
+                            "<button type='button' class='close' data-dismiss='modal'>&times;</button>"+
+                            "<h4 class='modal-title'>Aggiunto al carrello!</h4>"+
+                            "</div>"+
+                            "<div class='modal-body'>"+
+                            "</div>"+
+                            "<div class='modal-footer'>"+
+                            "<a href='view_cart.php' class='btn btn-success'>Termina acquisto</a>"+
+                            "<button type='button' class='btn btn-default' data-dismiss='modal'>Prosegui</button>"+
+                            "</div>"+
+                            "</div>"+
+                            "</div>"+
+                            "</div>"+
+                            "</div>"+
+                            "</div>"+
+                            "</div>"+
+                            "</div>"
+                    }
+                    res.innerHTML=template;
+
+                }
+            }
+        };
+        xmlHttp.open("GET", "search4price.php?"+info, true);
+        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
+        xmlHttp.send();
+    }
+</script>
+
+<script>
+    var err = document.getElementById("infoE");
+
+    var x, template = "";
+    function ajax_get(codice) {
+        var quantity = document.getElementById(codice).value;
+        var xmlHttp;
+        if (window.XMLHttpRequest){
+            xmlHttp = new XMLHttpRequest();
+        }else {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");<!-- per browser vecchi -->
+        }
+
+        var info = "codice="+codice+"&quantity="+quantity;
+
+        xmlHttp.onreadystatechange = function () {
+            if(xmlHttp.readyState === 4 && xmlHttp.status === 200){ <!-- 0: richiesta non inizializzata; 1: richiesta non stabilita; 2: richiesta inviata; 3: Richiesta in processo; 4: Richiesta ultimata -->
+                err.innerHTML=xmlHttp.responseText;
+            }
+        };
+        xmlHttp.open("GET", "cart.php?action=add&"+info, true);
+        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")//Send the proper header information along with the request
+        xmlHttp.send();
+    }
+</script>
+
+</body>
+</html>

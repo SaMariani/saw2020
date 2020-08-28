@@ -82,7 +82,7 @@ if ($user) {
     $success .= "Welcome $user!";
     sendMessage($success, $error);
 
-    //header("Location:home.php");
+    //header("Location:index.php");
 
 } else {
     // Error message
